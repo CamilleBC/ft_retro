@@ -17,6 +17,8 @@ OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
 IDIR	=	includes
 IFLAGS	=	$(addprefix -I,$(IDIR))
 
+LDFGLAGS	= -lncurses
+
 DEPDIR		=	deps
 DEPFILES	=	$(SRCFILES: %.c=$(DEPDIR)/%.d)
 DEPFLAGS	=	-MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
@@ -31,7 +33,7 @@ all: $(EXEC)
 
 $(EXEC): $(OBJFILES)
 	@echo "Compiling ${GREEN}$@${NC} executable..."
-	@$(CXX) $(CXXFLAGS) -o $@ $^
+	@$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFGLAGS)
 
 $(OBJFILES): $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPDIR)/%.d
 	@mkdir -p $(OBJDIR) ${DEPDIR}
