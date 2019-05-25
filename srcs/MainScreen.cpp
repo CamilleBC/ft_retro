@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:32:22 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 16:02:54 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ void MainScreen::init() {
     cbreak();           /* Line buffering disabled */
     noecho();           /* Don't echo() while we do getch */
     nodelay(win, true); /* getch is non-blocking */
-    wborder(win, ACS_LTEE, ACS_RTEE, ACS_TTEE, ACS_BTEE, ACS_ULCORNER,
+    wborder(win, ACS_LTEE, ACS_RTEE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER,
             ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
     wrefresh(win);
 }
 
-// void MainScreen::print(IGameEntity ***grid) {
 void MainScreen::print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]) {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
@@ -51,8 +50,6 @@ void MainScreen::print_empty(Point coord) {
 }
 
 void MainScreen::print_object(BluePrint const &object, Point coord) {
-        // mvwprintw(win, coord.y + box, coord.x * x_factor + box,
-        //           object.texture->c_str());
     for (size_t i = 0; i < object.size; ++i) {
         mvwprintw(win, coord.y + i + box, coord.x * x_factor + box,
                   object.texture[i].c_str());

@@ -6,23 +6,22 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:35:21 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:17:00 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "StatusScreen.hpp"
 
 StatusScreen::StatusScreen(unsigned int height, unsigned int width,
-                           unsigned int starty, unsigned int startx)
-    : res(width, height), pos(startx, starty) {
+                           unsigned int starty, unsigned int startx,
+                           unsigned int lives, MsTimer const *timer)
+    : res(width, height), pos(startx, starty), lives(lives), score(0),
+      timer(timer) {
     std::cout << "StatusScreen created." << std::endl;
 }
 
 StatusScreen::~StatusScreen() {
     std::cout << "StatusScreen died." << std::endl;
-    // wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-    // wrefresh(win);
-    // delwin(win);
 }
 
 void StatusScreen::init() {
@@ -46,7 +45,7 @@ void StatusScreen::init() {
     wrefresh(win);
 }
 
-void StatusScreen::print() {}
+void StatusScreen::print() { print_current_time(); }
 
 void StatusScreen::clear() { wclear(win); }
 
@@ -54,9 +53,26 @@ void StatusScreen::render() { wrefresh(win); }
 
 /* PRIVATE */
 
-StatusScreen::StatusScreen() : res(0, 0) {}
+StatusScreen::StatusScreen() : res(0, 0), lives(0), score(0), timer(NULL) {}
+
+void StatusScreen::print_current_time() {
+    timespec time = timer->get_current_time();
+
+    std::ostringstream string_stream;
+    unsigned int minute = 0;
+    while (time.tv_sec >= 60) {
+        ++minute;
+        time.tv_sec -= 60;
+    }
+
+    string_stream << "Elapsed time: " << std::setfill('0') << std::setw(2)
+                  << minute << ":" << std::setfill('0') << std::setw(2)
+                  << (unsigned long)time.tv_sec;
+    std::string time_str = string_stream.str();
+    time_str.resize(20);
+    mvwprintw(win, 5, 5, time_str.c_str());
+}
 
 // static
 
-size_t const StatusScreen::x_factor = 1;
 size_t const StatusScreen::box = 1;

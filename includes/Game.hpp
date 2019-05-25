@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:52:32 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 18:14:24 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Game {
   private:
     MainScreen main_screen;
     StatusScreen status_screen;
+    MsTimer timer;
     // IGameEntity ***grid;
     IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
     bool is_running;
