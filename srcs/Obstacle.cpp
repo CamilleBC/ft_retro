@@ -6,15 +6,13 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 09:20:44 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 10:40:10 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Obstacle.hpp"
 
-Obstacle::Obstacle() : direction(0, 0) {
-    has_moved = false;
-}
+Obstacle::Obstacle() : direction(0, 0) { has_moved = false; }
 
 Obstacle::~Obstacle() {}
 
@@ -38,10 +36,18 @@ Point Obstacle::get_move() {
     }
 }
 
-IGameEntity* Obstacle::collide(Obstacle *e) {
-    return new Obstacle(Point(direction.x + e->direction.x, direction.y + e->direction.y));
+std::string Obstacle::get_texture() const { return "(@)"; }
+
+IGameEntity *Obstacle::collide(IGameEntity *e) { return e->get_collided(this); }
+
+IGameEntity *Obstacle::get_collided(Obstacle *e) {
+    return new Obstacle(
+        Point(direction.x + e->direction.x, direction.y + e->direction.y));
 }
 
-void Obstacle::end_turn(){
-    has_moved = false;
+IGameEntity *Obstacle::get_collided(Enemy *e) {
+    (void)e;
+    return this;
 }
+
+void Obstacle::end_turn() { has_moved = false; }

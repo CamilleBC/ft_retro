@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Grid.hpp                                           :+:      :+:    :+:   */
+/*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/25 00:04:30 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 10:22:04 by chaydont         ###   ########.fr       */
+/*   Created: 2019/05/25 09:58:32 by chaydont          #+#    #+#             */
+/*   Updated: 2019/05/25 10:32:02 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRID_HPP
-#define GRID_HPP
-
-#define GRID_HEIGHT 80
-#define GRID_WIDTH 80
+#ifndef ENEMY_HPP
+#define ENEMY_HPP
 
 #include "IGameEntity.hpp"
 #include "Point.hpp"
-#include "Enemy.hpp"
-#include "Obstacle.hpp" /// TO REMOVE //
 #include <iostream>
 
-class Grid {
+class Enemy : public IGameEntity {
   private:
-    IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
-
-    void move_entity(Point);
-    Grid(Grid const &);
-    Grid &operator=(Grid const &);
+    Point direction;
+    bool has_moved;
+    Enemy();
 
   public:
-    Grid();
-    ~Grid();
+    Enemy(Point);
+    ~Enemy();
+    Enemy(Enemy const &);
+    Enemy &operator=(Enemy const &);
 
-    void play_frame();
-    void print() const;
+    Point get_move();
+
+    std::string get_texture() const;
+
+    IGameEntity *collide(IGameEntity *);
+    IGameEntity *get_collided(Obstacle *);
+    IGameEntity *get_collided(Enemy *);
+    void end_turn();
 };
 
-#endif /* GRID_HPP */
+#endif /* ENEMY_HPP */

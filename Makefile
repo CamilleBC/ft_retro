@@ -9,6 +9,7 @@ CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
+				Enemy.cpp\
 				Game.cpp\
 				Grid.cpp\
 				KeyPress.cpp\
