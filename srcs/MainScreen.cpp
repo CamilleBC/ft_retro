@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   MainScreen.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
 /*   Updated: 2019/05/25 10:22:37 by cbaillat         ###   ########.fr       */

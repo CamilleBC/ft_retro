@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Obstacle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 22:57:40 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 01:39:52 by cbaillat         ###   ########.fr       */
+/*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
+/*   Updated: 2019/05/25 09:20:01 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Game.hpp"
-#include <cstdlib> // exit codes
-#include <iostream>
+#ifndef OBSTACLE_HPP
+#define OBSTACLE_HPP
 
 #include "IGameEntity.hpp"
 #include "Point.hpp"
-#include "Grid.hpp"
+#include <iostream>
 
-#include <unistd.h>
+class Obstacle : public IGameEntity {
+    private:
+        Point direction;
+        bool has_moved;
+        Obstacle();
 
-int main(void) {
-    Grid world;
+    public:
+        Obstacle(Point);
+        ~Obstacle();
+        Obstacle(Obstacle const &);
+        Obstacle &operator=(Obstacle const &);
 
-    Game game;
-    game.run();
-    return EXIT_SUCCESS;
-}
+        Point get_move();
+        IGameEntity*  collide(Obstacle*);
+        void  end_turn();
+};
+
+#endif /* OBSTACLE_HPP */

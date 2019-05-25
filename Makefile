@@ -10,8 +10,10 @@ CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g -fsanitize=address
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
 				Game.cpp\
+				Grid.cpp\
 				KeyPress.cpp\
-				MainScreen.cpp
+				MainScreen.cpp\
+				Obstacle.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
