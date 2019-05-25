@@ -9,7 +9,9 @@ CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
-				MainScreen.cpp
+				MainScreen.cpp\
+				Grid.cpp\
+				Obstacle.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)

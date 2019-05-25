@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Grid.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 22:57:40 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 01:25:04 by chaydont         ###   ########.fr       */
+/*   Created: 2019/05/25 00:04:30 by chaydont          #+#    #+#             */
+/*   Updated: 2019/05/25 01:40:40 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib> // exit codes
-#include <iostream>
+#ifndef GRID_HPP
+#define GRID_HPP
+
+#define GRID_HEIGHT 80
+#define GRID_WIDTH 80
 
 #include "IGameEntity.hpp"
 #include "Point.hpp"
-#include "Grid.hpp"
+#include "Obstacle.hpp" /// TO REMOVE //
+#include <iostream>
 
-#include <unistd.h>
+class Grid {
+  private:
+    IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
 
-int main(void) {
-    Grid world;
+    void move_entity(Point);
+    Grid(Grid const &);
+    Grid &operator=(Grid const &);
 
-    while(true){
-        world.play_frame();
-        world.print();
-        usleep(100000);
-    }
-}
+  public:
+    Grid();
+    ~Grid();
+
+    void play_frame();
+    void print() const;
+};
+
+#endif /* GRID_HPP */
