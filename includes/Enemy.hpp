@@ -21,7 +21,6 @@
 class Enemy : public IGameEntity {
   private:
     static const BluePrint blueprint;
-    Point direction;
     bool has_moved;
     Enemy();
     void init();

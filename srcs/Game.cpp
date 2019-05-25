@@ -117,9 +117,9 @@ void Game::init_grid() {
 
 void Game::spawn_obstacle() {
     int rand = rand_int(100);
-    if (rand < 50)
+    if (rand < 80)
         return ;
-    if (rand < 55)
+    if (rand < 85)
     {
         for (size_t i  = 0; i < GRID_WIDTH; ++i)
         {
@@ -127,9 +127,21 @@ void Game::spawn_obstacle() {
         }
         return ;
     }
-    for (int i = 0; i < rand_int(20); ++i)
+    if (rand < 90)
     {
-        grid[rand_int(GRID_HEIGHT / 10)][rand_int(GRID_WIDTH)] = new Obstacle();
+        rand = rand_int(GRID_WIDTH - 3);
+        for (int i = 0; i < 6; i += 2)
+        {
+            for (int j = 0; j < 3; ++j)
+            {
+                grid[i][rand + j] = new Obstacle(Point(0, 1));
+            }
+        }
+        return ;
+    }
+    for (int i = 0; i < rand_int(10) + 5; ++i)
+    {
+        grid[rand_int(GRID_HEIGHT / 20)][rand_int(GRID_WIDTH)] = new Obstacle();
     }
 }
 
@@ -171,10 +183,14 @@ void Game::move_entity(Point position) {
     grid[position.y][position.x] = NULL;
     Point move = entity->get_move();
     if ((size_t)(position.y + move.y) >= GRID_HEIGHT ||
-        position.y + move.y < 0 ||
-        (size_t)(position.x + move.x) >= GRID_WIDTH ||
-        position.x + move.x < 0) {
+        position.y + move.y < 0) {
         return;
+    }
+    if ((size_t)(position.x + move.x) >= GRID_WIDTH ||
+        position.x + move.x < 0)
+    {
+        entity->direction.x *= -1;
+        move.x *= -1;
     }
     // std::cout << move.x << " " << move.y << std::endl;
     dest = &(grid[position.y + move.y][position.x + move.x]);

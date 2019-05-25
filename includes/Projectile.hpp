@@ -19,7 +19,6 @@
 
 class Projectile : public IGameEntity {
     private:
-        Point   direction;
         bool    has_moved;
         Projectile();
 

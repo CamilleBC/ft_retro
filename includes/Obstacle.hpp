@@ -21,7 +21,6 @@
 class Obstacle : public IGameEntity {
     private:
         static const BluePrint blueprint;
-        Point direction;
         bool has_moved;
         void init();
 

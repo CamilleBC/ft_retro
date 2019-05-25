@@ -23,6 +23,7 @@ class Enemy;
 
 class IGameEntity {
     public:
+    	virtual Point direction;
         virtual ~IGameEntity() {}
         virtual Point get_move() = 0;
 
