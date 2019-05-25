@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Enemy.cpp                                          :+:      :+:    :+:   */
+/*   Projectile.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 11:50:03 by chaydont         ###   ########.fr       */
+/*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
+/*   Updated: 2019/05/25 12:04:29 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Enemy.hpp"
+#include "Projectile.hpp"
 
-Enemy::Enemy() : direction(0, 0) { has_moved = false; }
+Projectile::Projectile() : direction(0, 0) { has_moved = false; }
 
-Enemy::~Enemy() {}
+Projectile::~Projectile() {}
 
-Enemy::Enemy(Point c_direction) : direction(c_direction) {
+Projectile::Projectile(Point c_direction) : direction(c_direction) {
     direction = c_direction;
 }
 
-Enemy::Enemy(Enemy const &a) { *this = a; }
+Projectile::Projectile(Projectile const &a) { *this = a; }
 
-Enemy &Enemy::operator=(Enemy const &a) {
+Projectile &Projectile::operator=(Projectile const &a) {
     direction = a.direction;
     return *this;
 }
 
-Point Enemy::get_move() {
+Point Projectile::get_move() {
     if (has_moved) {
         return Point(0, 0);
     } else {
@@ -36,25 +36,26 @@ Point Enemy::get_move() {
     }
 }
 
-std::string Enemy::get_texture() const { return "|o|"; }
+std::string Projectile::get_texture() const { return " ' "; }
 
-IGameEntity *Enemy::collide(IGameEntity *e) { return e->get_collided(this); }
+IGameEntity *Projectile::collide(IGameEntity *e) { return e->get_collided(this); }
 
-IGameEntity *Enemy::get_collided(Enemy *e) {
+IGameEntity *Projectile::get_collided(Obstacle *e) {
     delete this;
     delete e;
     return NULL;
 }
 
-IGameEntity *Enemy::get_collided(Obstacle *e) {
-    delete this;
-    return (IGameEntity *)e;
-}
-
-IGameEntity *Enemy::get_collided(Projectile *e) {
+IGameEntity *Projectile::get_collided(Enemy *e) {
     delete this;
     delete e;
     return NULL;
 }
 
-void Enemy::end_turn() { has_moved = false; }
+IGameEntity *Projectile::get_collided(Projectile *e) {
+    delete this;
+    delete e;
+    return NULL;
+}
+
+void Projectile::end_turn() { has_moved = false; }

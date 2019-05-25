@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:58:32 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 10:32:02 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 11:51:01 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Enemy : public IGameEntity {
     IGameEntity *collide(IGameEntity *);
     IGameEntity *get_collided(Obstacle *);
     IGameEntity *get_collided(Enemy *);
+    IGameEntity *get_collided(Projectile *);
     void end_turn();
 };
 

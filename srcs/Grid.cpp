@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:10:14 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 10:38:56 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 13:23:22 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,18 @@ Grid::Grid() {
     grid[45][13] = new Obstacle(Point(-2, 1));
     grid[55][4] =  new Obstacle(Point(-3, -2));
     grid[27][10] = new Obstacle(Point(-1, 1));
+
+    grid[50][50] = new Obstacle(Point(-1, -1));
+    grid[50][51] = new Obstacle(Point(-1, -1));
+    grid[51][50] = new Obstacle(Point(-1, -1));
+    grid[51][51] = new Obstacle(Point(-1, -1));
+
     grid[20][35] = new Enemy(Point(1, 1));
-    grid[50][50] = new Enemy(Point(0, -1));
+    grid[20][50] = new Enemy(Point(0, -1));
+
+    for (int k = 0; k < 75; k += 3){
+        grid[75][k] = new Projectile(Point(0, -3));
+    }
     std::cout << "Object Built" << std::endl;
 }
 
@@ -92,6 +102,6 @@ void Grid::print() const {
             else
                 std::cout << "   ";
         }
-        std::cout << std::endl;
+        std::cout << "|" << std::endl;
     }
 }

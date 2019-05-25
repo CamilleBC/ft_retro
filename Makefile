@@ -12,7 +12,8 @@ SRCFILES	=	main.cpp\
 				Enemy.cpp\
 				MainScreen.cpp\
 				Grid.cpp\
-				Obstacle.cpp
+				Obstacle.cpp\
+				Projectile.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
