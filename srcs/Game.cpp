@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:18:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 14:59:15 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Game::Game()
 }
 
 Game::~Game() {
+    // main_screen.~MainScreen();
+    // status_screen.~StatusScreen();
     endwin();
     delete_grid();
     std::cout << "Game destroyed" << std::endl;
@@ -49,6 +51,7 @@ void Game::get_user_input() {
     case 'D':
     case KEY_RIGHT:
         // go right
+        play_frame();
         break;
     case 'W':
     case KEY_UP:
@@ -56,7 +59,10 @@ void Game::get_user_input() {
         break;
     case key_escape:
         // go up
-        exit(EXIT_SUCCESS);
+        is_running = false;
+        // this->~Game();
+        delete this;
+        exit (EXIT_SUCCESS);
         break;
     default:
         break;
@@ -73,25 +79,21 @@ void Game::pause() {
 void Game::run() {
     while (is_running) {
         main_screen.print(grid);
-        refresh();
+        main_screen.render();
         get_user_input();
-        play_frame();
-        usleep(100000);
+        usleep(10000);
     }
 }
 
 /* PRIVATE */
 
 void Game::init() {
-    setlocale(LC_ALL, "en_US");
     initscr();
-    // cbreak(); /* Line buffering disabled */
-    nocbreak();
+    cbreak(); /* Line buffering disabled */
     refresh();
     noecho(); /* Don't echo() while we do getch */
     main_screen.init();
     status_screen.init();
-    refresh();
 }
 
 void Game::init_grid() {

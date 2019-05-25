@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:17:52 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 15:02:33 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ MainScreen::~MainScreen() {
 
 void MainScreen::init() {
     win = newwin(res.height, res.width, pos.y, pos.x);
+    keypad(win,TRUE);
     cbreak();           /* Line buffering disabled */
     noecho();           /* Don't echo() while we do getch */
     nodelay(win, true); /* getch is non-blocking */
@@ -60,7 +61,7 @@ void MainScreen::print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]) {
 }
 
 void MainScreen::print_empty(Point coord) {
-    std::string empty(x_factor, ' ');
+    std::string empty(x_factor, '*');
     mvwprintw(win, coord.y + box, coord.x * x_factor + box, empty.c_str());
 }
 
@@ -81,5 +82,5 @@ MainScreen::MainScreen() : res(0, 0) {}
 
 // static
 
-size_t const MainScreen::x_factor = 1;
+size_t const MainScreen::x_factor = 3;
 size_t const MainScreen::box = 1;
