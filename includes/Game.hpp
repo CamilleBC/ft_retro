@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 01:57:06 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 09:53:01 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
+#include <locale.h>
 
 class Game {
   private:
-    WINDOW *main_screen;
+    MainScreen main_screen;
     KeyPress pressed_keys;
     bool is_running;
     static unsigned int const main_height;
     static unsigned int const main_width;
-    // static unsigned int const side_height;
-    // static unsigned int const side_width;
+    static unsigned int const main_startx;
+    static unsigned int const main_starty;
     static unsigned int const max_key_pressed = 10;
     // constructor
     Game(Game const &other);
