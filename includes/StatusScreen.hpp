@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MainScreen.hpp                                     :+:      :+:    :+:   */
+/*   StatusScreen.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:22:58 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 15:17:09 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAINSCREEN_HPP
-#define MAINSCREEN_HPP
+#ifndef StatusScreen_HPP
+#define StatusScreen_HPP
 
 #include "BluePrint.hpp"
 #include "Constants.hpp"
-#include "IGameEntity.hpp"
 #include "Point.hpp"
 #include "Resolution.hpp"
 #include <iostream>
 #include <ncurses.h>
 
-class MainScreen {
+class StatusScreen {
   private:
     static size_t const box;
     Resolution const res;
@@ -29,23 +28,21 @@ class MainScreen {
     static size_t const x_factor;
     WINDOW *win;
     // constructors
-    MainScreen();
+    StatusScreen();
     // methods
-    void print_empty(Point coord);
-    void print_object(BluePrint const &object, Point coord);
 
   public:
-    MainScreen(unsigned int height, unsigned int width, unsigned int starty,
-               unsigned int startx);
-    MainScreen(MainScreen const &other);
-    ~MainScreen();
+    StatusScreen(unsigned int height, unsigned int width, unsigned int starty,
+                 unsigned int startx);
+    StatusScreen(StatusScreen const &other);
+    ~StatusScreen();
     // operators
-    MainScreen &operator=(MainScreen const &rhs);
+    StatusScreen &operator=(StatusScreen const &rhs);
     // methods
     void init();
     void clear();
-    void print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
+    void print();
     void render();
 };
 
-#endif /* MAINSCREEN_HPP */
+#endif /* StatusScreen_HPP */

@@ -1,6 +1,6 @@
 # Prerequisites
 deps/
 # Compiled Object files
-obj/
+objs/
 # Executables
 ft_retro

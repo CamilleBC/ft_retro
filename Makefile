@@ -5,13 +5,17 @@
 EXEC	=	ft_retro
 
 CXX			=	clang++
-CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror
+CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
+				Enemy.cpp\
+				Game.cpp\
+				KeyPress.cpp\
 				MainScreen.cpp\
-				Grid.cpp\
-				Obstacle.cpp
+				StatusScreen.cpp\
+				Obstacle.cpp\
+				Projectile.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
@@ -19,7 +23,8 @@ OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
 IDIR	=	includes
 IFLAGS	=	$(addprefix -I,$(IDIR))
 
-LDFGLAGS	= -lncurses
+LDDIR = /Users/cbaillat/.brew/Cellar/ncurses/6.1/lib
+LDFGLAGS	= -L$(LDDIR) -lncursesw
 
 DEPDIR		=	deps
 DEPFILES	=	$(SRCFILES: %.c=$(DEPDIR)/%.d)
