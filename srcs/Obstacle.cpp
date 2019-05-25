@@ -12,7 +12,18 @@
 
 #include "Obstacle.hpp"
 
-Obstacle::Obstacle() : direction(0, 0) { init(); }
+
+Point   Obstacle::Rand_dir()
+{
+    int sign1 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
+ //   int sign2 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
+    int value1 = sign1 * (int)((rand() / (double)RAND_MAX) * 4) ;
+    int value2 = (int)((rand() / (double)RAND_MAX) * 4) + 1; 
+ 
+    return(Point(value1, value2));
+}
+
+Obstacle::Obstacle() : direction(Rand_dir()) {init(); }
 
 Obstacle::Obstacle(Point c_direction) : direction(c_direction) { init(); }
 
@@ -39,10 +50,10 @@ BluePrint const &Obstacle::get_blueprint() const { return blueprint; }
 IGameEntity *Obstacle::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Obstacle::get_collided(Obstacle *e) {
+    Obstacle *res = new Obstacle(Point(direction.x + e->direction.x, direction.y + e->direction.y)); 
     delete this;
     delete e;
-    return new Obstacle(
-        Point(direction.x + e->direction.x, direction.y + e->direction.y));
+    return res;
 }
 
 IGameEntity *Obstacle::get_collided(Enemy *e) {

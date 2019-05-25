@@ -23,16 +23,17 @@ class Obstacle : public IGameEntity {
         static const BluePrint blueprint;
         Point direction;
         bool has_moved;
-        Obstacle();
         void init();
 
     public:
+        Obstacle();
         Obstacle(Point);
         ~Obstacle();
         Obstacle(Obstacle const &);
         Obstacle &operator=(Obstacle const &);
 
         Point get_move();
+        Point Rand_dir();
 
         BluePrint const &get_blueprint() const;
 

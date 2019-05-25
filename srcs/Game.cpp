@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Game.hpp"
+#include <stdlib.h>
 
 Game::Game()
     : main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
@@ -96,25 +97,40 @@ void Game::init() {
     status_screen.init();
 }
 
+int Game::rand_int(int n) {
+    return ((int)((rand() / (double)RAND_MAX) * n));
+}
+
 void Game::init_grid() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             grid[h][w] = NULL;
         }
     }
-    grid[60][2] = new Obstacle(Point(2, 1));
-    grid[20][8] = new Obstacle(Point(1, 2));
-    grid[15][55] = new Obstacle(Point(-1, -2));
-    grid[25][40] = new Obstacle(Point(2, -1));
-    grid[30][41] = new Obstacle(Point(3, -1));
-    grid[40][24] = new Obstacle(Point(1, -2));
-    grid[48][72] = new Obstacle(Point(1, 1));
-    grid[48][20] = new Obstacle(Point(1, -1));
-    grid[45][13] = new Obstacle(Point(-2, 1));
-    grid[55][4] = new Obstacle(Point(-3, -2));
-    grid[27][10] = new Obstacle(Point(-1, 1));
+    for (size_t i = 0; i < 4; ++i)
+    {
+        grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
+    }
     grid[20][35] = new Enemy(Point(1, 1));
     grid[50][50] = new Enemy(Point(0, -1));
+}
+
+void Game::spawn_obstacle() {
+    int rand = rand_int(100);
+    if (rand < 50)
+        return ;
+    if (rand < 55)
+    {
+        for (size_t i  = 0; i < GRID_WIDTH; ++i)
+        {
+            grid[0][i] = new Obstacle(Point(0, 1));
+        }
+        return ;
+    }
+    for (int i = 0; i < rand_int(20); ++i)
+    {
+        grid[rand_int(GRID_HEIGHT / 10)][rand_int(GRID_WIDTH)] = new Obstacle();
+    }
 }
 
 void Game::delete_grid() {
@@ -128,6 +144,7 @@ void Game::delete_grid() {
 }
 
 void Game::play_frame() {
+    spawn_obstacle();
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
@@ -139,7 +156,7 @@ void Game::play_frame() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
-                std::cout << "end";
+             //   std::cout << "end";
                 grid[h][w]->end_turn();
             }
         }

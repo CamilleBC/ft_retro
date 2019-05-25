@@ -13,8 +13,11 @@
 #include "Game.hpp"
 #include <cstdlib> // exit codes
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 int main(void) {
+	srand(time(NULL));
     Game game;
     game.run();
     if (!isendwin()) {
