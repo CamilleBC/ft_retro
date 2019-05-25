@@ -43,11 +43,13 @@ class Game {
     void init_mainscreen();
     void play_frame();
     void move_entity(Point position);
+    void spawn_obstacle();
 
   public:
     Game();
     ~Game();
     // methods
+    int  rand_int(int n);
     bool get_user_input();
     void pause();
     void run();

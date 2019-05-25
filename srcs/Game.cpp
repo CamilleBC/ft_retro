@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 19:14:38 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 20:00:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.hpp"
+#include <stdlib.h>
 
 Game::Game()
     : main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
@@ -100,26 +101,54 @@ void Game::init() {
     status_screen.init();
 }
 
+int Game::rand_int(int n) {
+    return ((int)((rand() / (double)RAND_MAX) * n));
+}
+
 void Game::init_grid() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             grid[h][w] = NULL;
         }
     }
+    for (size_t i = 0; i < 4; ++i)
+    {
+        grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
+    }
+    player = new Player(Point(0, 0));
     grid[70][40] = player;
-    grid[60][2] = new Obstacle(Point(2, 1));
-    grid[20][8] = new Obstacle(Point(1, 2));
-    grid[15][55] = new Obstacle(Point(-1, -2));
-    grid[25][40] = new Obstacle(Point(2, -1));
-    grid[30][41] = new Obstacle(Point(3, -1));
-    grid[40][24] = new Obstacle(Point(1, -2), 40);
-    grid[48][72] = new Obstacle(Point(1, 1), 60);
-    grid[48][20] = new Obstacle(Point(1, -1), 80);
-    grid[45][13] = new Obstacle(Point(-2, 1), 40);
-    grid[55][4] = new Obstacle(Point(-3, -2));
-    grid[27][10] = new Obstacle(Point(-1, 1));
-    grid[20][35] = new Obstacle(Point(1, 1));
+    grid[20][35] = new Enemy(Point(1, 1));
     grid[50][50] = new Enemy(Point(0, -1));
+}
+
+void Game::spawn_obstacle() {
+    int rand = rand_int(1000);
+    if (rand < 800)
+        return ;
+    if (rand < 805)
+    {
+        for (size_t i  = 0; i < GRID_WIDTH; ++i)
+        {
+            grid[0][i] = new Obstacle(Point(0, 1));
+        }
+        return ;
+    }
+    if (rand < 900)
+    {
+        rand = rand_int(GRID_WIDTH - 3);
+        for (int i = 0; i < 6; i += 2)
+        {
+            for (int j = 0; j < 3; ++j)
+            {
+                grid[i][rand + j] = new Obstacle(Point(0, 1));
+            }
+        }
+        return ;
+    }
+    for (int i = 0; i < rand_int(4) + 2; ++i)
+    {
+        grid[rand_int(GRID_HEIGHT / 20)][rand_int(GRID_WIDTH)] = new Obstacle();
+    }
 }
 
 void Game::delete_grid() {
@@ -133,6 +162,7 @@ void Game::delete_grid() {
 }
 
 void Game::play_frame() {
+    spawn_obstacle();
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
@@ -157,11 +187,15 @@ void Game::move_entity(Point position) {
     grid[position.y][position.x] = NULL;
     Point move = entity->get_move();
     if ((size_t)(position.y + move.y) >= GRID_HEIGHT ||
-        position.y + move.y < 0 ||
-        (size_t)(position.x + move.x) >= GRID_WIDTH ||
-        position.x + move.x < 0) {
-        delete entity;
+        position.y + move.y < 0) {
+            delete entity;
         return;
+    }
+    if ((size_t)(position.x + move.x) >= GRID_WIDTH ||
+        position.x + move.x < 0)
+    {
+        entity->direction.x *= -1;
+        move.x *= -1;
     }
     Point shot = entity->get_shoot();
     if (shot.x != 0 || shot.y != 0){

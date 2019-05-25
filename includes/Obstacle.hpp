@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:07:55 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:47:28 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,31 @@
 
 class Obstacle : public IGameEntity {
   private:
-    static const BluePrint blueprint;
     Point direction;
-    bool has_moved;
     int max_speed;
     int speed;
     Point shoot;
-
-    Obstacle();
-    void init();
+    static const BluePrint blueprint;
+    bool has_moved;
 
   public:
-    Obstacle(Point);
-    Obstacle(Point direction, int speed);
+    Obstacle();
+    Obstacle(Point c_direction);
+    Obstacle(Point c_direction, int speed);
+    Obstacle(Obstacle const &other);
     ~Obstacle();
-    Obstacle(Obstacle const &);
-    Obstacle &operator=(Obstacle const &);
+    Obstacle &operator=(Obstacle const &rhs);
+    void init();
+
+    Point Rand_dir();
 
     Point get_move();
     Point get_shoot();
     void set_shoot(Point);
 
+    // getters
     BluePrint const &get_blueprint() const;
-
+    // collision
     IGameEntity *collide(IGameEntity *);
     IGameEntity *get_collided(Obstacle *);
     IGameEntity *get_collided(Enemy *);

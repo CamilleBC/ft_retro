@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 17:18:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 19:17:39 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:56:09 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ MsTimer &MsTimer::operator=(MsTimer const &rhs) {
 }
 
 bool MsTimer::is_new_frame() {
-    long ns_per_frame = 1E9 / 60;
+    long ns_per_frame = 1E9 / FPS;
     timespec current;
     timespec delta_time;
 

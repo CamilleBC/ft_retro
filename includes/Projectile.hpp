@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:44:43 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:07:51 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:48:31 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 class Projectile : public IGameEntity {
     private:
+    Point direction;
         static const BluePrint blueprint;
-        Point   direction;
         bool    has_moved;
         Point shoot;
         Projectile();

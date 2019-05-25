@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IGameEntity.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:04:46 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:42:04 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Player;
 
 class IGameEntity {
     public:
+    	Point direction;
         virtual ~IGameEntity() {}
         virtual Point get_move() = 0;
         virtual Point get_shoot() = 0;

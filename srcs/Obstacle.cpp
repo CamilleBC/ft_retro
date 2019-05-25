@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:07:44 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:47:38 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Obstacle.hpp"
 
-Obstacle::Obstacle() : direction(0, 0) { init(); }
+
+Point   Obstacle::Rand_dir()
+{
+    int sign1 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
+ //   int sign2 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
+    int value1 = sign1 * (int)((rand() / (double)RAND_MAX) * 4) ;
+    int value2 = (int)((rand() / (double)RAND_MAX) * 4) + 1;
+
+    return(Point(value1, value2));
+}
+
+Obstacle::Obstacle() : direction(Rand_dir()) {init(); }
 
 Obstacle::Obstacle(Point c_direction, int speed)
     : direction(c_direction), max_speed(speed), speed(speed) {
@@ -26,10 +37,10 @@ Obstacle::Obstacle(Point c_direction)
 
 Obstacle::~Obstacle() {}
 
-Obstacle::Obstacle(Obstacle const &a) { *this = a; }
+Obstacle::Obstacle(Obstacle const &other) { *this = other; }
 
-Obstacle &Obstacle::operator=(Obstacle const &a) {
-    direction = a.direction;
+Obstacle &Obstacle::operator=(Obstacle const &rhs) {
+    direction = rhs.direction;
     return *this;
 }
 
@@ -54,10 +65,10 @@ BluePrint const &Obstacle::get_blueprint() const { return blueprint; }
 IGameEntity *Obstacle::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Obstacle::get_collided(Obstacle *e) {
-    Point tmp = Point(direction.x + e->direction.x, direction.y + e->direction.y);
+    Obstacle *res = new Obstacle(Point(direction.x + e->direction.x, direction.y + e->direction.y));
     delete this;
     delete e;
-    return new Obstacle(tmp);
+    return res;
 }
 
 IGameEntity *Obstacle::get_collided(Enemy *e) {

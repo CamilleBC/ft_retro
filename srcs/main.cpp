@@ -13,9 +13,12 @@
 #include "Game.hpp"
 #include <cstdlib> // exit codes
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 int main(void) {
-    try {
+	srand(time(NULL));
+	try {
     Game game;
     game.run();
     } catch (...) {

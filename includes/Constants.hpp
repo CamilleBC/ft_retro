@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:25:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:55:21 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:55:31 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,4 @@
 #define STATUSSCREEN_HEIGHT (size_t)82
 #define STATUSSCREEN_WIDTH (size_t)82
 
+#define FPS 30

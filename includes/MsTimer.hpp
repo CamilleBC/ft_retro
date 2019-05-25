@@ -6,13 +6,14 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 17:22:56 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 18:25:24 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:56:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MSTIMER_HPP
 #define MSTIMER_HPP
 
+#include "Constants.hpp"
 #include <cstddef>
 #include <ctime>
 
