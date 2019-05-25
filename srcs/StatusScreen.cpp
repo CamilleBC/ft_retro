@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:17:35 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 15:35:21 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ StatusScreen::StatusScreen(unsigned int height, unsigned int width,
 
 StatusScreen::~StatusScreen() {
     std::cout << "StatusScreen died." << std::endl;
-    wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-    wrefresh(win);
-    delwin(win);
+    // wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+    // wrefresh(win);
+    // delwin(win);
 }
 
 void StatusScreen::init() {
@@ -46,8 +46,9 @@ void StatusScreen::init() {
     wrefresh(win);
 }
 
-void StatusScreen::print() {
-}
+void StatusScreen::print() {}
+
+void StatusScreen::clear() { wclear(win); }
 
 void StatusScreen::render() { wrefresh(win); }
 

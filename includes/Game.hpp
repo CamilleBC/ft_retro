@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:04:36 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 15:38:30 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
 #include "Obstacle.hpp"
+#include "Player.hpp"
 #include "StatusScreen.hpp"
 #include <locale.h>
 #include <unistd.h> // usleep
@@ -28,6 +29,7 @@ class Game {
     StatusScreen status_screen;
     // IGameEntity ***grid;
     IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
+    Player player;
     bool is_running;
     // constructor
     Game(Game const &other);
@@ -45,7 +47,7 @@ class Game {
     Game();
     ~Game();
     // methods
-    void get_user_input();
+    bool get_user_input();
     void pause();
     void run();
 };

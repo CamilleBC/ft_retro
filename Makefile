@@ -13,6 +13,7 @@ SRCFILES	=	main.cpp\
 				Game.cpp\
 				KeyPress.cpp\
 				MainScreen.cpp\
+				Player.cpp\
 				StatusScreen.cpp\
 				Obstacle.cpp
 

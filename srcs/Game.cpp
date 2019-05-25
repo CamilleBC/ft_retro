@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:59:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 15:43:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ Game::Game()
 }
 
 Game::~Game() {
-    // main_screen.~MainScreen();
-    // status_screen.~StatusScreen();
+    clear();
     endwin();
     delete_grid();
     std::cout << "Game destroyed" << std::endl;
 }
 
-void Game::get_user_input() {
+bool Game::get_user_input() {
     int key = getch();
-    static int const key_escape = 27;
+    // static int const key_escape = 27;
     switch (key) {
     case ' ':
         // shoot
@@ -51,22 +50,18 @@ void Game::get_user_input() {
     case 'D':
     case KEY_RIGHT:
         // go right
-        play_frame();
         break;
     case 'W':
     case KEY_UP:
         // go up
         break;
-    case key_escape:
-        // go up
-        is_running = false;
-        // this->~Game();
-        delete this;
-        exit (EXIT_SUCCESS);
+    case 'q':
+        return false;
         break;
     default:
         break;
     }
+    return true;
 }
 
 void Game::pause() {
@@ -78,10 +73,13 @@ void Game::pause() {
 
 void Game::run() {
     while (is_running) {
+        play_frame();
         main_screen.print(grid);
         main_screen.render();
-        get_user_input();
-        usleep(10000);
+        if (get_user_input() == false) {
+            break;
+        }
+        usleep(100000);
     }
 }
 
@@ -89,9 +87,11 @@ void Game::run() {
 
 void Game::init() {
     initscr();
+    keypad(stdscr, true);
     cbreak(); /* Line buffering disabled */
     refresh();
     noecho(); /* Don't echo() while we do getch */
+    nodelay(stdscr, true); /* getch is non-blocking */
     main_screen.init();
     status_screen.init();
 }
@@ -120,13 +120,10 @@ void Game::init_grid() {
 void Game::delete_grid() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
-            // if (grid[h][w]) {
-            //     delete grid[h][w];
-            // }
+            if (grid[h][w]) {
+                delete grid[h][w];
+            }
         }
-        // if (grid[h]) {
-        // delete grid[h];
-        // }
     }
 }
 
@@ -134,6 +131,7 @@ void Game::play_frame() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
+                // std::cout << "move";
                 move_entity(Point(w, h));
             }
         }
@@ -141,6 +139,7 @@ void Game::play_frame() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
+                std::cout << "end";
                 grid[h][w]->end_turn();
             }
         }

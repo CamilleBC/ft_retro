@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:04:46 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 15:22:58 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ class MainScreen {
     WINDOW *win;
     // constructors
     MainScreen();
-void print_empty(Point coord);
-    void print_object(BluePrint const &object, Point coord);
     // methods
+    void print_empty(Point coord);
+    void print_object(BluePrint const &object, Point coord);
 
   public:
     MainScreen(unsigned int height, unsigned int width, unsigned int starty,
@@ -43,8 +43,8 @@ void print_empty(Point coord);
     MainScreen &operator=(MainScreen const &rhs);
     // methods
     void init();
-    // void print(IGameEntity ***grid);
-void print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
+    void clear();
+    void print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
     void render();
 };
 
