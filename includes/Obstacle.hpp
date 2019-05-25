@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 09:20:01 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 10:32:11 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ class Obstacle : public IGameEntity {
         Obstacle &operator=(Obstacle const &);
 
         Point get_move();
-        IGameEntity*  collide(Obstacle*);
+
+        std::string get_texture() const;
+
+        IGameEntity*  collide(IGameEntity*);
+        IGameEntity*  get_collided(Obstacle*);
+        IGameEntity*  get_collided(Enemy*);
         void  end_turn();
 };
 

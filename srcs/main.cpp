@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:57:40 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 01:25:04 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 10:20:59 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int main(void) {
     while(true){
         world.play_frame();
         world.print();
-        usleep(100000);
+         usleep(200000);
     }
 }

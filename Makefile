@@ -9,6 +9,7 @@ CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
+				Enemy.cpp\
 				MainScreen.cpp\
 				Grid.cpp\
 				Obstacle.cpp
