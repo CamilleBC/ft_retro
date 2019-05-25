@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:57:40 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 16:27:41 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:30:19 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 #include <iostream>
 
 int main(void) {
+    try {
     Game game;
     game.run();
+    } catch (...) {
+        clear();
+        endwin();
+    }
     std::cout << "Game quit!";
     return EXIT_SUCCESS;
 }

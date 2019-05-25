@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:44:43 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 12:01:27 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:07:51 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 
 class Projectile : public IGameEntity {
     private:
+        static const BluePrint blueprint;
         Point   direction;
         bool    has_moved;
+        Point shoot;
         Projectile();
 
     public:
@@ -30,13 +32,16 @@ class Projectile : public IGameEntity {
         Projectile &operator=(Projectile const &);
 
         Point get_move();
+        Point get_shoot();
+        void set_shoot(Point);
 
-        std::string get_texture() const;
+        BluePrint const &get_blueprint() const;
 
         IGameEntity*  collide(IGameEntity*);
         IGameEntity*  get_collided(Obstacle*);
         IGameEntity*  get_collided(Projectile*);
         IGameEntity*  get_collided(Enemy*);
+        IGameEntity*  get_collided(Player*);
         void  end_turn();
 };
 

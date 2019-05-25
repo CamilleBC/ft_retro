@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MainScreen.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:22:58 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 17:25:56 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ class MainScreen {
     // methods
     void init();
     void clear();
+    WINDOW *get_win();
     void print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
     void render();
 };
