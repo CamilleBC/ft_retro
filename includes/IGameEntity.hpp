@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 16:29:25 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:04:46 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class IGameEntity {
     public:
         virtual ~IGameEntity() {}
         virtual Point get_move() = 0;
+        virtual Point get_shoot() = 0;
+        virtual void set_shoot(Point) = 0;
 
         virtual BluePrint const &get_blueprint() const = 0;
 

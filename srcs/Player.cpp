@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 16:33:40 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:03:13 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ Point Player::get_move() {
         return tmp;
     }
 }
+
+void Player::set_shoot(Point dir) { shoot = dir; }
+void Player::set_shoot() { shoot = Point(0, -1); }
+
+Point Player::get_shoot() { return shoot; }
 
 BluePrint const &Player::get_blueprint() const { return blueprint; }
 
@@ -68,7 +73,10 @@ void Player::end_turn() { has_moved = false; }
 
 /* PRIVATE */
 
-void Player::init() { has_moved = false; }
+void Player::init() {
+    has_moved = false;
+    shoot = Point(0, 0);
+}
 
 // static
 

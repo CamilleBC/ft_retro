@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 17:28:01 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:04:15 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool Game::get_user_input() {
     int key = getch();
     switch (key) {
     case ' ':
-        // shoot
+        player->set_shoot();
         break;
     case 'p':
         pause();
@@ -79,7 +79,7 @@ void Game::run() {
         if (!get_user_input()) {
             break;
         }
-        usleep(60000);
+        usleep(10000);
     }
 }
 
@@ -108,10 +108,10 @@ void Game::init_grid() {
     grid[15][55] = new Obstacle(Point(-1, -2));
     grid[25][40] = new Obstacle(Point(2, -1));
     grid[30][41] = new Obstacle(Point(3, -1));
-    grid[40][24] = new Obstacle(Point(1, -2));
-    grid[48][72] = new Obstacle(Point(1, 1));
-    grid[48][20] = new Obstacle(Point(1, -1));
-    grid[45][13] = new Obstacle(Point(-2, 1));
+    grid[40][24] = new Obstacle(Point(1, -2), 40);
+    grid[48][72] = new Obstacle(Point(1, 1), 60);
+    grid[48][20] = new Obstacle(Point(1, -1), 80);
+    grid[45][13] = new Obstacle(Point(-2, 1), 40);
     grid[55][4] = new Obstacle(Point(-3, -2));
     grid[27][10] = new Obstacle(Point(-1, 1));
     grid[20][35] = new Obstacle(Point(1, 1));
@@ -156,9 +156,16 @@ void Game::move_entity(Point position) {
         position.y + move.y < 0 ||
         (size_t)(position.x + move.x) >= GRID_WIDTH ||
         position.x + move.x < 0) {
+        delete entity;
         return;
     }
-    // std::cout << move.x << " " << move.y << std::endl;
-    dest = &(grid[position.y + move.y][position.x + move.x]);
-    *dest = (*dest == NULL ? entity : entity->collide(*dest));
+    Point shot = entity->get_shoot();
+    if (shot.x != 0 || shot.y != 0){
+        grid[position.y + shot.y][position.x + shot.x] = new Projectile(shot);
+        grid[position.y][position.x] = entity;
+        entity->set_shoot(Point(0, 0));
+    } else {
+        dest = &(grid[position.y + move.y][position.x + move.x]);
+        *dest = (*dest == NULL ? entity : entity->collide(*dest));
+    }
 }

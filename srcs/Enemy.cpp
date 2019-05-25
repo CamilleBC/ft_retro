@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 16:30:07 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 19:08:12 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ Point Enemy::get_move() {
         return direction;
     }
 }
+
+Point Enemy::get_shoot() { return Point(0, 0); }
+
+void Enemy::set_shoot(Point dir) { shoot = dir; }
 
 BluePrint const &Enemy::get_blueprint() const { return blueprint; }
 
@@ -64,8 +68,10 @@ void Enemy::end_turn() { has_moved = false; }
 
 /* PRIVATE */
 
-void Enemy::init() { has_moved = false; }
-
+void Enemy::init() {
+    has_moved = false;
+    shoot = Point(0, 0);
+}
 // static
 
 BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1);
