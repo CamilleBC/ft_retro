@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 12:33:52 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 16:20:49 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class Obstacle : public IGameEntity {
         IGameEntity*  get_collided(Obstacle*);
         IGameEntity*  get_collided(Enemy*);
         IGameEntity*  get_collided(Projectile*);
+        IGameEntity*  get_collided(Player*);
         void  end_turn();
 };
 

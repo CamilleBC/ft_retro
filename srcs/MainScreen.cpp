@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MainScreen.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:32:22 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 17:04:26 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void MainScreen::print_object(BluePrint const &object, Point coord) {
     }
 }
 
+WINDOW *MainScreen::get_win() {
+    return win;
+}
 void MainScreen::render() { wrefresh(win); }
 void MainScreen::clear() { wclear(win); }
 

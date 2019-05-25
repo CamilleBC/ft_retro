@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 15:52:32 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 17:26:11 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
 #include "Obstacle.hpp"
+#include "Player.hpp"
 #include "StatusScreen.hpp"
+
 #include <locale.h>
 #include <unistd.h> // usleep
 
@@ -26,9 +28,9 @@ class Game {
   private:
     MainScreen main_screen;
     StatusScreen status_screen;
+    Player *player;
     // IGameEntity ***grid;
     IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
-    bool is_running;
     // constructor
     Game(Game const &other);
     // operator

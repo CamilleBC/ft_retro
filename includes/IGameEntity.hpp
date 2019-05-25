@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IGameEntity.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 11:55:59 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 16:29:25 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class Obstacle;
 class Projectile;
 class Enemy;
+class Player;
 
 class IGameEntity {
     public:
@@ -32,12 +33,14 @@ class IGameEntity {
         virtual IGameEntity* get_collided(Obstacle*) = 0;
         virtual IGameEntity* get_collided(Enemy*) = 0;
         virtual IGameEntity* get_collided(Projectile*) = 0;
+        virtual IGameEntity* get_collided(Player*) = 0;
 
         virtual void end_turn() = 0;
 };
 
 #include "Projectile.hpp"
 #include "Enemy.hpp"
+#include "Player.hpp"
 #include "Obstacle.hpp"
 
 #endif /* IGAMEENTITY_HPP */

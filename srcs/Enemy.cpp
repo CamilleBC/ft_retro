@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 12:07:26 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 16:30:07 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ IGameEntity *Enemy::get_collided(Obstacle *e) {
 
 IGameEntity *Enemy::get_collided(Projectile *e) {
     delete this;
+    delete e;
+    return NULL;
+}
+
+IGameEntity *Enemy::get_collided(Player* e){
     delete e;
     return NULL;
 }

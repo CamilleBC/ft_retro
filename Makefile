@@ -15,7 +15,8 @@ SRCFILES	=	main.cpp\
 				MainScreen.cpp\
 				StatusScreen.cpp\
 				Obstacle.cpp\
-				Projectile.cpp
+				Projectile.cpp\
+				Player.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
@@ -23,7 +24,7 @@ OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
 IDIR	=	includes
 IFLAGS	=	$(addprefix -I,$(IDIR))
 
-LDDIR = /Users/cbaillat/.brew/Cellar/ncurses/6.1/lib
+LDDIR = $(HOME)/.brew/Cellar/ncurses/6.1/lib
 LDFGLAGS	= -L$(LDDIR) -lncursesw
 
 DEPDIR		=	deps

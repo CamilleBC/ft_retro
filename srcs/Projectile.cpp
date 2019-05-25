@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 12:04:29 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 17:26:35 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ Point Projectile::get_move() {
 
 std::string Projectile::get_texture() const { return " ' "; }
 
-IGameEntity *Projectile::collide(IGameEntity *e) { return e->get_collided(this); }
+IGameEntity *Projectile::collide(IGameEntity *e) {
+    return e->get_collided(this);
+}
 
 IGameEntity *Projectile::get_collided(Obstacle *e) {
     delete this;
@@ -54,6 +56,11 @@ IGameEntity *Projectile::get_collided(Enemy *e) {
 
 IGameEntity *Projectile::get_collided(Projectile *e) {
     delete this;
+    delete e;
+    return NULL;
+}
+
+IGameEntity *Projectile::get_collided(Player *e) {
     delete e;
     return NULL;
 }
