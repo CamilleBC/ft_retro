@@ -49,6 +49,12 @@ IGameEntity *Enemy::get_collided(Obstacle *e) {
     return (IGameEntity *)e;
 }
 
+IGameEntity *Enemy::get_collided(Projectile *e) {
+    delete this;
+    delete e;
+    return NULL;
+}
+
 void Enemy::end_turn() { has_moved = false; }
 
 /* PRIVATE */

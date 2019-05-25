@@ -13,9 +13,9 @@ SRCFILES	=	main.cpp\
 				Game.cpp\
 				KeyPress.cpp\
 				MainScreen.cpp\
-				Player.cpp\
 				StatusScreen.cpp\
-				Obstacle.cpp
+				Obstacle.cpp\
+				Projectile.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)

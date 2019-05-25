@@ -39,6 +39,7 @@ class Enemy : public IGameEntity {
     IGameEntity *collide(IGameEntity *);
     IGameEntity *get_collided(Obstacle *);
     IGameEntity *get_collided(Enemy *);
+    IGameEntity *get_collided(Projectile *);
     void end_turn();
 };
 

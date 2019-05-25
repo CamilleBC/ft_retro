@@ -39,13 +39,21 @@ BluePrint const &Obstacle::get_blueprint() const { return blueprint; }
 IGameEntity *Obstacle::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Obstacle::get_collided(Obstacle *e) {
+    delete this;
+    delete e;
     return new Obstacle(
         Point(direction.x + e->direction.x, direction.y + e->direction.y));
 }
 
 IGameEntity *Obstacle::get_collided(Enemy *e) {
-    (void)e;
+    delete e;
     return this;
+}
+
+IGameEntity *Obstacle::get_collided(Projectile *e) {
+    delete e;
+    delete this;
+    return NULL;
 }
 
 void Obstacle::end_turn() { has_moved = false; }
