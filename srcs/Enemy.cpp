@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 10:40:17 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 12:07:26 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Enemy.hpp"
 
-Enemy::Enemy() : direction(0, 0) { has_moved = false; }
+Enemy::Enemy() : direction(0, 0) { init(); }
 
 Enemy::~Enemy() {}
 
-Enemy::Enemy(Point c_direction) : direction(c_direction) {
-    direction = c_direction;
-}
+Enemy::Enemy(Point c_direction) : direction(c_direction) { init(); }
 
 Enemy::Enemy(Enemy const &a) { *this = a; }
 
@@ -36,7 +34,7 @@ Point Enemy::get_move() {
     }
 }
 
-std::string Enemy::get_texture() const { return "|o|"; }
+BluePrint const &Enemy::get_blueprint() const { return blueprint; }
 
 IGameEntity *Enemy::collide(IGameEntity *e) { return e->get_collided(this); }
 
@@ -52,3 +50,11 @@ IGameEntity *Enemy::get_collided(Obstacle *e) {
 }
 
 void Enemy::end_turn() { has_moved = false; }
+
+/* PRIVATE */
+
+void Enemy::init() { has_moved = false; }
+
+// static
+
+BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1);

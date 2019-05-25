@@ -11,9 +11,9 @@ SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
 				Enemy.cpp\
 				Game.cpp\
-				Grid.cpp\
 				KeyPress.cpp\
 				MainScreen.cpp\
+				StatusScreen.cpp\
 				Obstacle.cpp
 
 OBJDIR		=	objs

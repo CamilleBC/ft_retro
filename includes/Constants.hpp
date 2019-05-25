@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Constants.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/24 22:57:40 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 12:32:55 by cbaillat         ###   ########.fr       */
+/*   Created: 2019/05/25 11:25:06 by cbaillat          #+#    #+#             */
+/*   Updated: 2019/05/25 14:18:25 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Game.hpp"
-#include <cstdlib> // exit codes
-#include <iostream>
 
-int main(void) {
-    Game game;
-    game.run();
-    return EXIT_SUCCESS;
-}
+#define GRID_HEIGHT (size_t)80
+#define GRID_WIDTH (size_t)80
+#define MAINSCREEN_HEIGHT GRID_HEIGHT
+#define MAINSCREEN_WIDTH (GRID_WIDTH * 3)
+#define STATUSSCREEN_HEIGHT GRID_HEIGHT
+#define STATUSSCREEN_WIDTH 80
+

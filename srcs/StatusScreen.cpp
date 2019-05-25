@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MainScreen.cpp                                     :+:      :+:    :+:   */
+/*   StatusScreen.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 14:17:52 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 14:17:35 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MainScreen.hpp"
+#include "StatusScreen.hpp"
 
-MainScreen::MainScreen(unsigned int height, unsigned int width,
-                       unsigned int starty, unsigned int startx)
+StatusScreen::StatusScreen(unsigned int height, unsigned int width,
+                           unsigned int starty, unsigned int startx)
     : res(width, height), pos(startx, starty) {
-    std::cout << "MainScreen created." << std::endl;
+    std::cout << "StatusScreen created." << std::endl;
 }
 
-MainScreen::~MainScreen() {
-    std::cout << "MainScreen died." << std::endl;
+StatusScreen::~StatusScreen() {
+    std::cout << "StatusScreen died." << std::endl;
     wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     wrefresh(win);
     delwin(win);
 }
 
-void MainScreen::init() {
+void StatusScreen::init() {
     win = newwin(res.height, res.width, pos.y, pos.x);
     cbreak();           /* Line buffering disabled */
     noecho();           /* Don't echo() while we do getch */
@@ -46,40 +46,16 @@ void MainScreen::init() {
     wrefresh(win);
 }
 
-// void MainScreen::print(IGameEntity ***grid) {
-void MainScreen::print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]) {
-    for (size_t h = 0; h < GRID_HEIGHT; ++h) {
-        for (size_t w = 0; w < GRID_WIDTH; ++w) {
-            if (grid[h][w] != NULL) {
-                print_object(grid[h][w]->get_blueprint(), Point(w, h));
-            } else {
-                print_empty(Point(w, h));
-            }
-        }
-    }
+void StatusScreen::print() {
 }
 
-void MainScreen::print_empty(Point coord) {
-    std::string empty(x_factor, ' ');
-    mvwprintw(win, coord.y + box, coord.x * x_factor + box, empty.c_str());
-}
-
-void MainScreen::print_object(BluePrint const &object, Point coord) {
-        mvwprintw(win, coord.y + box, coord.x * x_factor + box,
-                  object.texture->c_str());
-    // for (size_t i = 0; i < object.size; ++i) {
-    //     mvwprintw(win, coord.y + i + box, coord.x * x_factor + box,
-    //               object.texture[i].c_str());
-    // }
-}
-
-void MainScreen::render() { wrefresh(win); }
+void StatusScreen::render() { wrefresh(win); }
 
 /* PRIVATE */
 
-MainScreen::MainScreen() : res(0, 0) {}
+StatusScreen::StatusScreen() : res(0, 0) {}
 
 // static
 
-size_t const MainScreen::x_factor = 1;
-size_t const MainScreen::box = 1;
+size_t const StatusScreen::x_factor = 1;
+size_t const StatusScreen::box = 1;

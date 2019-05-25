@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 10:32:11 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/25 12:33:52 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 #define OBSTACLE_HPP
 
 #include "IGameEntity.hpp"
+#include "Enemy.hpp"
 #include "Point.hpp"
 #include <iostream>
 
 class Obstacle : public IGameEntity {
     private:
+        static const BluePrint blueprint;
         Point direction;
         bool has_moved;
         Obstacle();
+        void init();
 
     public:
         Obstacle(Point);
@@ -31,7 +34,7 @@ class Obstacle : public IGameEntity {
 
         Point get_move();
 
-        std::string get_texture() const;
+        BluePrint const &get_blueprint() const;
 
         IGameEntity*  collide(IGameEntity*);
         IGameEntity*  get_collided(Obstacle*);
