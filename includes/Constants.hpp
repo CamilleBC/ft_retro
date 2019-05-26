@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:25:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 19:55:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 14:35:26 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@
 #define MAINSCREEN_WIDTH (size_t)242
 #define STATUSSCREEN_HEIGHT (size_t)82
 #define STATUSSCREEN_WIDTH (size_t)82
+#define MENUSCREEN_HEIGHT (size_t)42
+#define MENUSCREEN_WIDTH (size_t)142
 
 #define FPS 30

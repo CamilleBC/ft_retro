@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 10:03:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:52:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 15:20:34 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void Screen::init() {
     wborder(win, borders.left, borders.right, borders.top, borders.bottom,
             borders.top_left, borders.top_right, borders.bottom_left,
             borders.bottom_right);
-    wrefresh(win);
+    // wrefresh(win);
 }
 
 void Screen::render() { wrefresh(win); }

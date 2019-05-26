@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:11:51 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 15:21:14 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdlib.h>
 
 Game::Game()
-    : main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
+    : menu_screen(MenuScreen(MENUSCREEN_HEIGHT, MENUSCREEN_WIDTH, 40, 40)),
+      main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
       status_screen(StatusScreen(STATUSSCREEN_HEIGHT, STATUSSCREEN_WIDTH, 0,
                                  MAINSCREEN_WIDTH + 1, 3, &timer)) {
     std::cout << "Game created." << std::endl;
@@ -61,7 +62,6 @@ bool Game::get_user_input() {
     default:
         break;
     }
-    // flushinp();
     return true;
 }
 
@@ -77,11 +77,18 @@ bool Game::pause() {
         default:
             break;
         }
-        // flushinp();
     }
 }
 
 void Game::run() {
+    menu_screen.print_menu();
+    menu_screen.render();
+    flushinp();
+    while (true) {
+        if (getch() != KEY_ENTER) {
+            break;
+        }
+    }
     while (true) {
         play_frame();
         main_screen.print_grid(grid);

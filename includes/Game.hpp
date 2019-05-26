@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 08:11:38 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 14:37:38 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "IGameEntity.hpp"
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
+#include "MenuScreen.hpp"
 #include "Obstacle.hpp"
 #include "Player.hpp"
 #include "StatusScreen.hpp"
@@ -26,6 +27,7 @@
 
 class Game {
   private:
+    MenuScreen menu_screen;
     MainScreen main_screen;
     StatusScreen status_screen;
     Player *player;

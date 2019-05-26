@@ -13,6 +13,7 @@ SRCFILES	=	main.cpp\
 				Game.cpp\
 				KeyPress.cpp\
 				MainScreen.cpp\
+				MenuScreen.cpp\
 				MsTimer.cpp\
 				Obstacle.cpp\
 				Projectile.cpp\
