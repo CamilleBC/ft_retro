@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 09:54:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:18:28 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void Game::run() {
     while (true) {
         play_frame();
         main_screen.print(grid);
+        status_screen.set_score(player->get_score());
         status_screen.print();
         main_screen.render();
         status_screen.render();
@@ -201,7 +202,7 @@ void Game::move_entity(Point position) {
     if (dynamic_cast<ICanShoot *>(entity) &&
         dynamic_cast<ICanShoot *>(entity)->get_is_shooting()) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
-        grid[position.y + shot.y][position.x + shot.x] = new Projectile(shot);
+        grid[position.y + shot.y][position.x + shot.x] = new Projectile(entity, shot);
         grid[position.y][position.x] = entity;
         dynamic_cast<ICanShoot *>(entity)->set_is_shooting(false);
     } else {

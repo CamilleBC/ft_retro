@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   StatusScreen.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 19:17:00 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:06:39 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ void StatusScreen::init() {
     wrefresh(win);
 }
 
-void StatusScreen::print() { print_current_time(); }
+void StatusScreen::set_score(int new_score) { score = new_score; }
+
+void StatusScreen::print() {
+    print_current_time();
+    print_score();
+}
 
 void StatusScreen::clear() { wclear(win); }
 
@@ -71,6 +76,13 @@ void StatusScreen::print_current_time() {
     std::string time_str = string_stream.str();
     time_str.resize(20);
     mvwprintw(win, 5, 5, time_str.c_str());
+}
+
+void StatusScreen::print_score() {
+    std::ostringstream string_stream;
+
+    string_stream << "Score : " << score << " points";
+    mvwprintw(win, 6, 5, string_stream.str().c_str());
 }
 
 // static

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Player.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 09:54:37 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:21:10 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ Player &Player::operator=(Player const &a) {
 
 void Player::end_turn() { has_moved = false; }
 
+void Player::add_score(int value) { score += value; }
+
 // getters
 
 BluePrint const &Player::get_blueprint() const { return blueprint; }
@@ -49,6 +51,8 @@ Point Player::get_move() const {
 }
 
 Point Player::get_shot() const { return shot; }
+
+int Player::get_score() const { return score; }
 
 // setters
 
@@ -84,6 +88,7 @@ IGameEntity *Player::get_collided(Player *e) {
 /* PRIVATE */
 
 void Player::init() {
+    score = 0;
     is_shooting = false;
     has_moved = false;
     shot = Point(0, -1);
