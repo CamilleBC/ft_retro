@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:44:43 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 09:16:20 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 10:47:30 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ class Projectile : public IGameEntity {
     static const EntityType type;
     Point direction;
     mutable bool has_moved;
+    IGameEntity *owner;
     Projectile();
 
   public:
-    Projectile(Point);
+    Projectile(IGameEntity* owner, Point direction);
     ~Projectile();
     Projectile(Projectile const &);
     Projectile &operator=(Projectile const &);

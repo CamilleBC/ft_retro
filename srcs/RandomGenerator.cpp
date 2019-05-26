@@ -24,13 +24,13 @@ Point RandomGenerator::get_rand_dir(){
 
 int RandomGenerator::get_rand_speed() { return (get_rand_int(20) + 1); }
 
-void RandomGenerator::spawn_nrandom_entity(EntityType type, IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH], int nb_spawn)
+void RandomGenerator::spawn_nrandom_entity(EntityType type, IGameEntity ***grid, int nb_spawn)
 {
 	int x, y;
 
 	switch (type) {
 	case enemy :
-		for (int i = 0; i < nb_spawn; ++i) 
+		for (int i = 0; i < nb_spawn; ++i)
 		{
 			x = get_rand_int(GRID_HEIGHT / 20);
 			y = get_rand_int(GRID_WIDTH);
@@ -43,7 +43,7 @@ void RandomGenerator::spawn_nrandom_entity(EntityType type, IGameEntity *grid[GR
 	case projectile :
 		break;
 	case obstacle :
-		for (int i = 0; i < nb_spawn; ++i) 
+		for (int i = 0; i < nb_spawn; ++i)
 		{
 			x = get_rand_int(GRID_HEIGHT / 20);
 			y = get_rand_int(GRID_WIDTH);
@@ -58,7 +58,7 @@ void RandomGenerator::spawn_nrandom_entity(EntityType type, IGameEntity *grid[GR
     }
 }
 
-void RandomGenerator::spawn_square(EntityType type, IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH])
+void RandomGenerator::spawn_square(EntityType type, IGameEntity ***grid)
 {
 	int speed;
 	int rand;
@@ -103,7 +103,7 @@ void RandomGenerator::spawn_square(EntityType type, IGameEntity *grid[GRID_HEIGH
     }
 }
 
-void RandomGenerator::spawn_line(EntityType type, IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH])
+void RandomGenerator::spawn_line(EntityType type, IGameEntity ***grid)
 {
 	int speed;
 
@@ -132,7 +132,7 @@ void RandomGenerator::spawn_line(EntityType type, IGameEntity *grid[GRID_HEIGHT]
     }
 }
 
-void RandomGenerator::spawn(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH], size_t frames)
+void RandomGenerator::spawn(IGameEntity ***grid, size_t frames)
 {
 	int rand;
 	static int diff = 1;
@@ -159,7 +159,7 @@ void RandomGenerator::spawn(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH], size_t f
 			spawn_nrandom_entity(enemy, grid, rand / 10);
 		else
 			spawn_nrandom_entity(obstacle, grid, rand / 10);
-	
+
 	}
 
 	if (rand > 20 && !(rand % 3) && !(frames % 3))

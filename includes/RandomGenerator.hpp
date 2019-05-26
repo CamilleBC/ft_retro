@@ -11,9 +11,9 @@
 
 class RandomGenerator {
   private:
-    void spawn_nrandom_entity(EntityType type, IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH], int nb_spawn);
-    void spawn_square(EntityType type, IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
-    void spawn_line(EntityType type, IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
+    void spawn_nrandom_entity(EntityType type, IGameEntity ***grid, int nb_spawn);
+    void spawn_square(EntityType type, IGameEntity ***grid);
+    void spawn_line(EntityType type, IGameEntity ***grid);
 
   public:
     RandomGenerator();
@@ -27,7 +27,7 @@ class RandomGenerator {
 
     //spawners
 
-    void spawn(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH], size_t frames);
+    void spawn(IGameEntity ***grid, size_t frames);
 };
 
 #endif

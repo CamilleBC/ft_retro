@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:54:28 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:27:16 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class MainScreen : public Screen {
     // operators
     MainScreen &operator=(MainScreen const &rhs);
     // methods
-    void print_grid(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
+    void print(IGameEntity ***grid);
 };
 
 #endif /* MAINSCREEN_HPP */

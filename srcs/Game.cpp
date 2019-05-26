@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 15:21:14 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 17:12:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ Game::Game()
     : menu_screen(MenuScreen(MENUSCREEN_HEIGHT, MENUSCREEN_WIDTH, 40, 40)),
       main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
       status_screen(StatusScreen(STATUSSCREEN_HEIGHT, STATUSSCREEN_WIDTH, 0,
-                                 MAINSCREEN_WIDTH + 1, 3, &timer)) {
+                                 MAINSCREEN_WIDTH + 1, 3, &timer)),
+      lives(3) {
     std::cout << "Game created." << std::endl;
     init();
     random_gen = new RandomGenerator();
-    player = new Player(Point(0, 0));
     init_grid();
+    spawn_player();
 }
 
 Game::~Game() {
@@ -92,16 +93,32 @@ void Game::run() {
     }
     while (true) {
         play_frame();
-        main_screen.print_grid(grid);
+        if (!lives_observer() || !get_user_input()) {
+            break;
+        }
+        main_screen.print(grid);
+        status_screen.set_score(player->get_score());
         status_screen.print_status();
         main_screen.render();
         status_screen.render();
-        if (!get_user_input()) {
-            break;
-        }
         while (!timer.is_new_frame()) {
         }
     }
+}
+
+bool Game::lives_observer() {
+    static unsigned int lives_prev = 3;
+
+    if (lives != lives_prev) {
+        lives_prev = lives;
+        if (lives == 0) {
+            return false;
+        } else {
+            spawn_player();
+            status_screen.set_lives(lives);
+        }
+    }
+    return true;
 }
 
 /* PRIVATE */
@@ -120,17 +137,28 @@ void Game::init() {
 
 int Game::rand_int(int n) { return ((int)((rand() / (double)RAND_MAX) * n)); }
 
-void Game::init_grid() {
-    for (size_t h = 0; h < GRID_HEIGHT; ++h) {
-        for (size_t w = 0; w < GRID_WIDTH; ++w) {
-            grid[h][w] = NULL;
-        }
+IGameEntity **Game::create_array1D() {
+    IGameEntity **array1D = new IGameEntity *[GRID_WIDTH];
+    for (size_t i = 0; i < GRID_WIDTH; ++i) {
+        array1D[i] = NULL;
     }
+    return array1D;
+}
+
+IGameEntity ***Game::create_grid() {
+    IGameEntity ***array2D = new IGameEntity **[GRID_HEIGHT];
+    for (size_t i = 0; i < GRID_HEIGHT; ++i) {
+        array2D[i] = create_array1D();
+    }
+    return array2D;
+}
+
+void Game::init_grid() {
+    grid = create_grid();
     for (size_t i = 0; i < 4; ++i) {
         grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
     }
-    player = new Player(Point(0, 0));
-    grid[70][40] = player;
+    spawn_player();
     grid[20][35] = new Enemy(Point(1, 1));
     grid[50][50] = new Enemy(Point(0, -1));
 }
@@ -158,11 +186,16 @@ void Game::play_frame() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
-                grid[h][w]->end_turn();
+                (grid[h][w])->end_turn();
             }
         }
     }
     frames++;
+}
+
+void Game::spawn_player() {
+    player = new Player(Point(0,0), &lives);
+    grid[70][40] = player;
 }
 
 void Game::move_entity(Point position) {
@@ -187,7 +220,8 @@ void Game::move_entity(Point position) {
     if (dynamic_cast<ICanShoot *>(entity) &&
         dynamic_cast<ICanShoot *>(entity)->get_is_shooting()) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
-        grid[position.y + shot.y][position.x + shot.x] = new Projectile(shot);
+        grid[position.y + shot.y][position.x + shot.x] =
+            new Projectile(entity, shot);
         grid[position.y][position.x] = entity;
         dynamic_cast<ICanShoot *>(entity)->set_is_shooting(false);
     } else {

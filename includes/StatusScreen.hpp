@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   StatusScreen.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:12:10 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/25 18:48:15 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ class StatusScreen: public Screen{
     StatusScreen &operator=(StatusScreen const &rhs);
     // methods
     void print_status();
+    void set_score(unsigned int new_score);
+    void set_lives(unsigned int new_lives);
+    //setters
 };
 
 #endif /* StatusScreen_HPP */

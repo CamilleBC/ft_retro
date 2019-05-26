@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   StatusScreen.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
 /*   Updated: 2019/05/26 12:03:42 by cbaillat         ###   ########.fr       */
@@ -57,6 +57,12 @@ void StatusScreen::print_current_time() {
 void StatusScreen::print_lives() {
     mvwprintw(get_win(), 6, 5, "Lives: %u", lives);
 }
+// setters
+
+void StatusScreen::set_score(unsigned int new_score) { score = new_score; }
+void StatusScreen::set_lives(unsigned int new_lives) { lives = new_lives; }
+
+
 
 void StatusScreen::print_score() {
     mvwprintw(get_win(), 7, 5, "Score: %u", score);

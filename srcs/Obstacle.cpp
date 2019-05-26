@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 09:21:41 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 14:20:07 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ IGameEntity *Obstacle::get_collided(Projectile *e) {
 
 IGameEntity *Obstacle::get_collided(Player *e) {
     delete e;
+    delete this;
     return NULL;
 }
 

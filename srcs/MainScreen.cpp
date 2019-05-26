@@ -22,7 +22,7 @@ MainScreen::MainScreen(unsigned int height, unsigned int width,
 
 MainScreen::~MainScreen() { std::cout << "MainScreen died." << std::endl; }
 
-void MainScreen::print_grid(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]) {
+void MainScreen::print(IGameEntity ***grid) {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w] != NULL) {
