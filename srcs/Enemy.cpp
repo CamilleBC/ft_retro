@@ -12,7 +12,7 @@
 
 #include "Enemy.hpp"
 
-Enemy::Enemy() : direction(0, 0) { init(); }
+Enemy::Enemy() : direction(1, 0) { init(); }
 
 Enemy::~Enemy() {}
 
