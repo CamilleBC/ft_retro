@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 13:36:14 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:25:05 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ enum EntityType
 	obstacle,
 	player,
 	projectile,
-    road
+  road
 };
 
 class IGameEntity {
@@ -37,7 +37,6 @@ class IGameEntity {
     virtual ~IGameEntity() {}
 
     // methods
-    virtual void end_turn() = 0;
     // getters
     virtual BluePrint const &get_blueprint() const = 0;
     virtual Point get_direction() const = 0;

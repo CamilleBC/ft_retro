@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 16:27:12 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 17:39:55 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class Game {
     void init_grid();
     void init_mainscreen();
     void play_frame();
-    void move_entity(Point position);
+    void move_entity(IGameEntity*** new_grid, Point position);
     void spawn_obstacle();
     void spawn_player();
     bool lives_observer();

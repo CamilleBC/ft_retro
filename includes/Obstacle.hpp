@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 09:17:12 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:22:42 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ class Obstacle : public IGameEntity {
     static const BluePrint blueprint;
     static const EntityType type;
     Point direction;
-    mutable bool has_moved;
     int max_speed;
-    Point shoot;
     mutable int speed;
 
   public:
@@ -37,7 +35,6 @@ class Obstacle : public IGameEntity {
     Obstacle &operator=(Obstacle const &rhs);
 
     void init();
-    void end_turn();
     // getters
     BluePrint const &get_blueprint() const;
     virtual Point get_direction() const;

@@ -10,16 +10,16 @@ class Road : public IGameEntity {
     static const BluePrint blueprint;
     static const EntityType type;
     Point direction;
-    mutable bool has_moved;
+    int max_speed;
+    mutable int speed;
     Road();
 
   public:
-    Road(Point);
+    Road(Point, int);
     ~Road();
     Road(Road const &);
     Road &operator=(Road const &);
-
-    void end_turn();
+  
     // getters
     BluePrint const &get_blueprint() const;
     virtual Point get_direction() const;

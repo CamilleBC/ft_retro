@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:04:49 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 13:54:59 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 17:53:20 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class Player : public IGameEntity, public ICanShoot {
     static const BluePrint blueprint;
     static const EntityType type;
     mutable Point direction;
-    mutable bool has_moved;
     bool is_shooting;
     unsigned int *lives;
     int score;
@@ -35,7 +34,6 @@ class Player : public IGameEntity, public ICanShoot {
     Player(Player const &);
     Player &operator=(Player const &);
 
-    void end_turn();
     void add_score(int value);
     // getters
     bool get_is_shooting() const;

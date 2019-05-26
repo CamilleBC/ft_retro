@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 14:20:07 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:23:12 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ Obstacle &Obstacle::operator=(Obstacle const &rhs) {
 
 // methods
 
-void Obstacle::end_turn() { has_moved = false; }
-
 // getters
 
 BluePrint const &Obstacle::get_blueprint() const { return blueprint; }
@@ -45,12 +43,11 @@ Point Obstacle::get_direction() const { return direction; }
 
 Point Obstacle::get_move() const {
     speed--;
-    if (has_moved || speed) {
-        return Point(0, 0);
-    } else {
+    if (speed == 0){
         speed = max_speed;
-        has_moved = true;
         return direction;
+    } else {
+        return Point(0, 0);
     }
 }
 
@@ -106,8 +103,8 @@ IGameEntity *Obstacle::get_collided(Road *e) {
 /* PRIVATE */
 
 void Obstacle::init() {
-    has_moved = false;
-    shoot = Point(0, 0);
+    max_speed = 20;
+    speed = max_speed;
 }
 
 // static
