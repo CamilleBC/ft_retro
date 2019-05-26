@@ -95,8 +95,8 @@ IGameEntity *Player::get_collided(Road *e) {
 void Player::init() {
     is_shooting = false;
     shot = Point(0, -1);
-    speed = 5;
-    max_speed = 5;
+    speed = 3;
+    max_speed = 3;
 }
 
 // static

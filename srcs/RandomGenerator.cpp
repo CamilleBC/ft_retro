@@ -35,7 +35,7 @@ void RandomGenerator::spawn_nrandom_entity(EntityType type, IGameEntity ***grid,
 			x = get_rand_int(GRID_HEIGHT / 20);
 			y = get_rand_int(GRID_WIDTH);
 			if (!grid[x][y])
-				grid[x][y] = new Enemy(get_rand_dir(), 10);
+				grid[x][y] = new Enemy(get_rand_dir(), get_rand_speed() / 2 + 1);
 		}
 		break;
 	case player :
@@ -71,7 +71,7 @@ void RandomGenerator::spawn_square(EntityType type, IGameEntity ***grid)
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
             	if (!grid[i][rand + j])
-	                grid[i][rand + j] = new Enemy(Point(0, 1), 10);
+	                grid[i][rand + j] = new Enemy(Point(0, 1), (speed / 2) + 1);
             }
         }
 		break;
@@ -94,7 +94,7 @@ void RandomGenerator::spawn_square(EntityType type, IGameEntity ***grid)
             for (int j = 0; j < rand; ++j) {
             	if (grid[i][20 - rand / 2 + 40 * road_block + j])
             		delete grid[i][20 - rand / 2 + 40 * road_block + j];
-	            grid[i][20 - rand / 2 + 40 * road_block + j] = new Road(Point(0, 1), 10);
+	            grid[i][20 - rand / 2 + 40 * road_block + j] = new Road(Point(0, 1), 5);
             }
         }
 		break;
@@ -125,7 +125,7 @@ void RandomGenerator::spawn_line(EntityType type, IGameEntity ***grid)
 	case enemy :
        	for (size_t i = 0; i < GRID_WIDTH; ++i) {
        		if (!grid[0][i])
-            	grid[0][i] = new Enemy(Point(0, 1), 10);
+            	grid[0][i] = new Enemy(Point(0, 1), (speed / 2) + 1);
         }
 		break;
 	case player :
@@ -151,16 +151,16 @@ void RandomGenerator::spawn(IGameEntity ***grid, size_t frames)
 	static int diff = 1;
 
 	rand = get_rand_int(frames / 6);
-	if (frames > 0 && frames % 3600 < 180 * 5)
+	if (frames > 0 && frames % 3600 < 120 * 5)
 	{
 		spawn_road(grid, frames % 3600);
 		return ;
 	}
-	if (frames % 301 == 0)
+	else if (frames % 301 == 0)
 	{
 		spawn_square(road, grid);
 	}
-	if (frames % 1000 == 0)
+	else if (frames % 1000 == 0)
 	{
 		if (diff < 100)
 			diff++;
@@ -177,9 +177,7 @@ void RandomGenerator::spawn(IGameEntity ***grid, size_t frames)
 			spawn_nrandom_entity(enemy, grid, rand / 10);
 		else
 			spawn_nrandom_entity(obstacle, grid, rand / 10);
-
 	}
-
 	if (rand > 20 && !(rand % 3) && !(frames % 3))
 	{
 		if (rand % (1 + diff))
