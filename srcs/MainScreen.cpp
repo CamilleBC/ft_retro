@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 17:04:26 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:26:09 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void MainScreen::init() {
     wrefresh(win);
 }
 
-void MainScreen::print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]) {
+void MainScreen::print(IGameEntity ***grid) {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w] != NULL) {

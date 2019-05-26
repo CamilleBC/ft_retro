@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 13:53:25 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:27:12 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ class Game {
     unsigned int lives;
 
     MsTimer timer;
-    // IGameEntity ***grid;
-    IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
+    IGameEntity ***grid;
     // constructor
     Game(Game const &other);
     // operator
@@ -48,12 +47,15 @@ class Game {
     void spawn_obstacle();
     void spawn_player();
     bool lives_observer();
+    IGameEntity **create_array1D();
+
+    IGameEntity ***create_grid();
 
   public:
     Game();
     ~Game();
     // methods
-    int  rand_int(int n);
+    int rand_int(int n);
     bool get_user_input();
     bool pause();
     void run();

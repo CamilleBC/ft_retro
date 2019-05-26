@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 14:23:57 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:28:34 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ Game::Game()
       lives(3) {
     std::cout << "Game created." << std::endl;
     init();
-    spawn_player();
     init_grid();
+    spawn_player();
 }
 
 Game::~Game() {
@@ -113,8 +113,6 @@ bool Game::lives_observer() {
     return true;
 }
 
-
-
 /* PRIVATE */
 
 void Game::init() {
@@ -131,12 +129,24 @@ void Game::init() {
 
 int Game::rand_int(int n) { return ((int)((rand() / (double)RAND_MAX) * n)); }
 
-void Game::init_grid() {
-    for (size_t h = 0; h < GRID_HEIGHT; ++h) {
-        for (size_t w = 0; w < GRID_WIDTH; ++w) {
-            grid[h][w] = NULL;
-        }
+IGameEntity **Game::create_array1D() {
+    IGameEntity **array1D = new IGameEntity *[GRID_WIDTH];
+    for (size_t i = 0; i < GRID_WIDTH; ++i) {
+        array1D[i] = NULL;
     }
+    return array1D;
+}
+
+IGameEntity ***Game::create_grid() {
+    IGameEntity ***array2D = new IGameEntity **[GRID_HEIGHT];
+    for (size_t i = 0; i < GRID_HEIGHT; ++i) {
+        array2D[i] = create_array1D();
+    }
+    return array2D;
+}
+
+void Game::init_grid() {
+    grid = create_grid();
     for (size_t i = 0; i < 4; ++i) {
         grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
     }
@@ -196,7 +206,7 @@ void Game::play_frame() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
-                grid[h][w]->end_turn();
+                (grid[h][w])->end_turn();
             }
         }
     }

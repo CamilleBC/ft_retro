@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 17:25:56 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 16:27:16 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class MainScreen {
     void init();
     void clear();
     WINDOW *get_win();
-    void print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
+    void print(IGameEntity ***grid);
     void render();
 };
 
