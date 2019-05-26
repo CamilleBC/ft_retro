@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:47:28 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 09:17:12 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 class Obstacle : public IGameEntity {
   private:
-    Point direction;
-    int max_speed;
-    int speed;
-    Point shoot;
     static const BluePrint blueprint;
-    bool has_moved;
+    Point direction;
+    mutable bool has_moved;
+    int max_speed;
+    Point shoot;
+    mutable int speed;
 
   public:
     Obstacle();
@@ -34,23 +34,22 @@ class Obstacle : public IGameEntity {
     Obstacle(Obstacle const &other);
     ~Obstacle();
     Obstacle &operator=(Obstacle const &rhs);
+
     void init();
-
-    Point Rand_dir();
-
-    Point get_move();
-    Point get_shoot();
-    void set_shoot(Point);
-
+    void end_turn();
     // getters
     BluePrint const &get_blueprint() const;
+    virtual Point get_direction() const;
+    Point get_move() const;
+    Point get_rand_dir() const;
+    //setters
+    void set_direction(Point dir);
     // collision
     IGameEntity *collide(IGameEntity *);
     IGameEntity *get_collided(Obstacle *);
     IGameEntity *get_collided(Enemy *);
     IGameEntity *get_collided(Projectile *);
     IGameEntity *get_collided(Player *);
-    void end_turn();
 };
 
 #endif /* OBSTACLE_HPP */

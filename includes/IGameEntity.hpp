@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:42:04 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 09:21:25 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,28 @@ class Enemy;
 class Player;
 
 class IGameEntity {
-    public:
-    	Point direction;
-        virtual ~IGameEntity() {}
-        virtual Point get_move() = 0;
-        virtual Point get_shoot() = 0;
-        virtual void set_shoot(Point) = 0;
+  public:
+    virtual ~IGameEntity() {}
 
-        virtual BluePrint const &get_blueprint() const = 0;
-
-        virtual IGameEntity* collide(IGameEntity*) = 0;
-        virtual IGameEntity* get_collided(Obstacle*) = 0;
-        virtual IGameEntity* get_collided(Enemy*) = 0;
-        virtual IGameEntity* get_collided(Projectile*) = 0;
-        virtual IGameEntity* get_collided(Player*) = 0;
-
-        virtual void end_turn() = 0;
+    // methods
+    virtual void end_turn() = 0;
+    // getters
+    virtual BluePrint const &get_blueprint() const = 0;
+    virtual Point get_direction() const = 0;
+    virtual Point get_move() const = 0;
+    // setter
+    virtual void set_direction(Point) = 0;
+    // collision
+    virtual IGameEntity *collide(IGameEntity *) = 0;
+    virtual IGameEntity *get_collided(Obstacle *) = 0;
+    virtual IGameEntity *get_collided(Enemy *) = 0;
+    virtual IGameEntity *get_collided(Projectile *) = 0;
+    virtual IGameEntity *get_collided(Player *) = 0;
 };
 
-#include "Projectile.hpp"
 #include "Enemy.hpp"
-#include "Player.hpp"
 #include "Obstacle.hpp"
+#include "Player.hpp"
+#include "Projectile.hpp"
 
 #endif /* IGAMEENTITY_HPP */

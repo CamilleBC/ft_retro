@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:08:12 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 09:21:52 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,17 @@ Enemy &Enemy::operator=(Enemy const &a) {
     return *this;
 }
 
-Point Enemy::get_move() {
+// methods
+
+void Enemy::end_turn() { has_moved = false; }
+
+// getters
+
+BluePrint const &Enemy::get_blueprint() const { return blueprint; }
+
+Point Enemy::get_direction() const { return direction; }
+
+Point Enemy::get_move() const {
     if (has_moved) {
         return Point(0, 0);
     } else {
@@ -34,11 +44,11 @@ Point Enemy::get_move() {
     }
 }
 
-Point Enemy::get_shoot() { return Point(0, 0); }
+// setters
 
-void Enemy::set_shoot(Point dir) { shoot = dir; }
+void Enemy::set_direction(Point dir) { direction = dir; }
 
-BluePrint const &Enemy::get_blueprint() const { return blueprint; }
+// collision
 
 IGameEntity *Enemy::collide(IGameEntity *e) { return e->get_collided(this); }
 
@@ -59,19 +69,15 @@ IGameEntity *Enemy::get_collided(Projectile *e) {
     return NULL;
 }
 
-IGameEntity *Enemy::get_collided(Player* e){
+IGameEntity *Enemy::get_collided(Player *e) {
     delete e;
     return NULL;
 }
 
-void Enemy::end_turn() { has_moved = false; }
-
 /* PRIVATE */
 
-void Enemy::init() {
-    has_moved = false;
-    shoot = Point(0, 0);
-}
+void Enemy::init() { has_moved = false; }
+
 // static
 
 BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1);

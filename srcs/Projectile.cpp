@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/25 19:08:19 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 09:16:53 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,19 @@ Projectile &Projectile::operator=(Projectile const &a) {
     return *this;
 }
 
-Point Projectile::get_move() {
+// methods
+
+void Projectile::end_turn() {
+    has_moved = false;
+}
+
+// getters
+
+BluePrint const &Projectile::get_blueprint() const { return blueprint; }
+
+Point Projectile::get_direction() const { return direction; }
+
+Point Projectile::get_move() const {
     if (has_moved) {
         return Point(0, 0);
     } else {
@@ -36,12 +48,11 @@ Point Projectile::get_move() {
     }
 }
 
-BluePrint const &Projectile::get_blueprint() const { return blueprint; }
+// setters
 
-Point Projectile::get_shoot() { return Point(0, 0); }
+void Projectile::set_direction(Point dir) { direction = dir; }
 
-void Projectile::set_shoot(Point dir) { shoot = dir; }
-
+// collision
 
 IGameEntity *Projectile::collide(IGameEntity *e) {
     return e->get_collided(this);
@@ -70,9 +81,7 @@ IGameEntity *Projectile::get_collided(Player *e) {
     return NULL;
 }
 
-void Projectile::end_turn() {
-    has_moved = false;
-    shoot = Point(0, 0);
-}
+/* PRIVATE */
 
+// static
 BluePrint const Projectile::blueprint = BluePrint(new std::string(" ' "), 1);
