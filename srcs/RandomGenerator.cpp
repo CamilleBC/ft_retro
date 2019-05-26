@@ -102,6 +102,19 @@ void RandomGenerator::spawn_square(EntityType type, IGameEntity ***grid)
 		break;
     }
 }
+void RandomGenerator::spawn_road(IGameEntity ***grid, size_t frames)
+{ 	
+	for (size_t i = 0; i < GRID_WIDTH; ++i) {
+		if (!grid[0][i])
+        	delete grid[0][i];
+        if (frames <= 30 && ((i - frames) < 30 || (i - frames) > 50))
+	        grid[0][i] = new Road(Point(0, 1));
+	    if (frames > 30 && frames < 90 && ((i + frames - 60) < 30 || (i + frames - 60) > 50))
+	    	grid[0][i] = new Road(Point(0, 1));
+
+	}
+
+}
 
 void RandomGenerator::spawn_line(EntityType type, IGameEntity ***grid)
 {
@@ -138,6 +151,11 @@ void RandomGenerator::spawn(IGameEntity ***grid, size_t frames)
 	static int diff = 1;
 
 	rand = get_rand_int(frames / 6);
+	if (frames > 180 && frames % 3600 < 180)
+	{
+		spawn_road(grid, frames % 3600);
+		return ;
+	}
 	if (frames % 51 == 0)
 	{
 		spawn_square(road, grid);

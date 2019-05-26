@@ -12,7 +12,7 @@
 
 #include "Obstacle.hpp"
 
-Obstacle::Obstacle() : direction(get_rand_dir()) { init(); }
+Obstacle::Obstacle() : direction(1, 0) { init(); }
 
 Obstacle::Obstacle(Point c_direction, int speed)
     : direction(c_direction), max_speed(speed), speed(speed) {
@@ -52,15 +52,6 @@ Point Obstacle::get_move() const {
         has_moved = true;
         return direction;
     }
-}
-
-Point Obstacle::get_rand_dir() const {
-    int sign1 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
-    //   int sign2 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
-    int value1 = sign1 * (int)((rand() / (double)RAND_MAX) * 4);
-    int value2 = (int)((rand() / (double)RAND_MAX) * 4) + 1;
-
-    return (Point(value1, value2));
 }
 
 EntityType Obstacle::get_type() const { return type; }

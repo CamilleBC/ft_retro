@@ -42,7 +42,6 @@ class Obstacle : public IGameEntity {
     BluePrint const &get_blueprint() const;
     virtual Point get_direction() const;
     Point get_move() const;
-    Point get_rand_dir() const;
     EntityType get_type() const;
     //setters
     void set_direction(Point dir);
