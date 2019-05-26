@@ -27,6 +27,8 @@ class Player : public IGameEntity, public ICanShoot {
     mutable Point direction;
     bool is_shooting;
     unsigned int *lives;
+    mutable int speed;
+    int max_speed;
     Point shot;
     Player();
     void init();
