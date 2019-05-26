@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:04:49 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 11:04:30 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 13:54:59 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ class Player : public IGameEntity, public ICanShoot {
     mutable Point direction;
     mutable bool has_moved;
     bool is_shooting;
+    unsigned int *lives;
     int score;
     Point shot;
     Player();
     void init();
 
   public:
-    Player(Point);
+    Player(Point, unsigned int *);
     ~Player();
     Player(Player const &);
     Player &operator=(Player const &);

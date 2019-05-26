@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:18:28 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 14:23:57 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 Game::Game()
     : main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
       status_screen(StatusScreen(STATUSSCREEN_HEIGHT, STATUSSCREEN_WIDTH, 0,
-                                 MAINSCREEN_WIDTH + 1, 3, &timer)) {
+                                 MAINSCREEN_WIDTH + 1, 3, &timer)),
+      lives(3) {
     std::cout << "Game created." << std::endl;
     init();
-    player = new Player(Point(0, 0));
+    spawn_player();
     init_grid();
 }
 
@@ -84,18 +85,35 @@ bool Game::pause() {
 void Game::run() {
     while (true) {
         play_frame();
+        if (!lives_observer() || !get_user_input()) {
+            break;
+        }
         main_screen.print(grid);
         status_screen.set_score(player->get_score());
         status_screen.print();
         main_screen.render();
         status_screen.render();
-        if (!get_user_input()) {
-            break;
-        }
         while (!timer.is_new_frame()) {
         }
     }
 }
+
+bool Game::lives_observer() {
+    static unsigned int lives_prev = 3;
+
+    if (lives != lives_prev) {
+        lives_prev = lives;
+        if (lives == 0) {
+            return false;
+        } else {
+            spawn_player();
+            status_screen.set_lives(lives);
+        }
+    }
+    return true;
+}
+
+
 
 /* PRIVATE */
 
@@ -122,10 +140,14 @@ void Game::init_grid() {
     for (size_t i = 0; i < 4; ++i) {
         grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
     }
-    player = new Player(Point(0, 0));
-    grid[70][40] = player;
+    spawn_player();
     grid[20][35] = new Enemy(Point(1, 1));
     grid[50][50] = new Enemy(Point(0, -1));
+}
+
+void Game::spawn_player() {
+    player = new Player(Point(0, 0), &lives);
+    grid[70][40] = player;
 }
 
 void Game::spawn_obstacle() {
@@ -202,7 +224,8 @@ void Game::move_entity(Point position) {
     if (dynamic_cast<ICanShoot *>(entity) &&
         dynamic_cast<ICanShoot *>(entity)->get_is_shooting()) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
-        grid[position.y + shot.y][position.x + shot.x] = new Projectile(entity, shot);
+        grid[position.y + shot.y][position.x + shot.x] =
+            new Projectile(entity, shot);
         grid[position.y][position.x] = entity;
         dynamic_cast<ICanShoot *>(entity)->set_is_shooting(false);
     } else {

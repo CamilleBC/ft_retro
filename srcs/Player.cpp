@@ -6,17 +6,19 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 11:21:10 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 14:10:08 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Player.hpp"
 
-Player::Player() : direction(0, 0) { init(); }
+Player::Player() : direction(0, 0), lives(NULL) { init(); }
 
-Player::Player(Point c_direction) : direction(c_direction) { init(); }
+Player::Player(Point c_direction, unsigned int *lives) : direction(c_direction), lives(lives) { init(); }
 
-Player::~Player() {}
+Player::~Player() {
+    (*lives) = *lives - 1;
+}
 
 Player::Player(Player const &a) { *this = a; }
 
@@ -64,14 +66,15 @@ void Player::set_is_shooting(bool shooting) { is_shooting = shooting; }
 IGameEntity *Player::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Player::get_collided(Obstacle *e) {
-    delete this;
     delete e;
+    delete this;
     return NULL;
 }
 
 IGameEntity *Player::get_collided(Enemy *e) {
     delete e;
-    return this;
+    delete this;
+    return NULL;
 }
 
 IGameEntity *Player::get_collided(Projectile *e) {
@@ -82,6 +85,7 @@ IGameEntity *Player::get_collided(Projectile *e) {
 
 IGameEntity *Player::get_collided(Player *e) {
     delete e;
+    delete this;
     return NULL;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 08:11:38 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 13:53:25 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class Game {
     MainScreen main_screen;
     StatusScreen status_screen;
     Player *player;
+    unsigned int lives;
+
     MsTimer timer;
     // IGameEntity ***grid;
     IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];
@@ -44,6 +46,8 @@ class Game {
     void play_frame();
     void move_entity(Point position);
     void spawn_obstacle();
+    void spawn_player();
+    bool lives_observer();
 
   public:
     Game();

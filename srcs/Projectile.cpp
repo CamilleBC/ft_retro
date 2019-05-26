@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 11:20:56 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:55:08 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ IGameEntity *Projectile::get_collided(Projectile *e) {
 }
 
 IGameEntity *Projectile::get_collided(Player *e) {
-    delete e;
-    return NULL;
+    return e->get_collided(this);
 }
 
 /* PRIVATE */

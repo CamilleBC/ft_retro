@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:06:21 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:43:28 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class StatusScreen {
     // methods
     void print_current_time();
     void print_score();
+    void print_lives();
 
   public:
     StatusScreen(unsigned int height, unsigned int width, unsigned int starty,
@@ -54,7 +55,8 @@ class StatusScreen {
     void print();
     void render();
     //setters
-    void set_score(int new_score);
+    void set_score(unsigned int new_score);
+    void set_lives(unsigned int new_lives);
 };
 
 #endif /* StatusScreen_HPP */

@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 11:06:39 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:59:17 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,10 @@ void StatusScreen::init() {
     wrefresh(win);
 }
 
-void StatusScreen::set_score(int new_score) { score = new_score; }
-
 void StatusScreen::print() {
     print_current_time();
     print_score();
+    print_lives();
 }
 
 void StatusScreen::clear() { wclear(win); }
@@ -78,12 +77,21 @@ void StatusScreen::print_current_time() {
     mvwprintw(win, 5, 5, time_str.c_str());
 }
 
-void StatusScreen::print_score() {
-    std::ostringstream string_stream;
+void StatusScreen::print_score() { mvwprintw(win, 6, 5, "Score: %u", score); }
 
-    string_stream << "Score : " << score << " points";
-    mvwprintw(win, 6, 5, string_stream.str().c_str());
+void StatusScreen::print_lives() {
+    std::string str("Lives:");
+    for (unsigned int i = 0; i < lives; i++) {
+        str += "   )^(";
+    }
+    mvwprintw(win, 7, 5, str.c_str());
 }
+
+// setters
+
+void StatusScreen::set_score(unsigned int new_score) { score = new_score; }
+
+void StatusScreen::set_lives(unsigned int new_lives) { lives = new_lives; }
 
 // static
 
