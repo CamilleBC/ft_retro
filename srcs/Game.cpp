@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 09:54:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:11:51 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ bool Game::pause() {
 void Game::run() {
     while (true) {
         play_frame();
-        main_screen.print(grid);
-        status_screen.print();
+        main_screen.print_grid(grid);
+        status_screen.print_status();
         main_screen.render();
         status_screen.render();
         if (!get_user_input()) {

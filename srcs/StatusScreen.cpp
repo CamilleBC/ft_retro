@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 19:17:00 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 12:03:42 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 StatusScreen::StatusScreen(unsigned int height, unsigned int width,
                            unsigned int starty, unsigned int startx,
                            unsigned int lives, MsTimer const *timer)
-    : res(width, height), pos(startx, starty), lives(lives), score(0),
-      timer(timer) {
+    : Screen(height, width, starty, startx,
+             Borders(ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER,
+                     ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER)),
+      lives(lives), score(0), timer(timer) {
     std::cout << "StatusScreen created." << std::endl;
 }
 
@@ -24,36 +26,15 @@ StatusScreen::~StatusScreen() {
     std::cout << "StatusScreen died." << std::endl;
 }
 
-void StatusScreen::init() {
-    win = newwin(res.height, res.width, pos.y, pos.x);
-    cbreak();           /* Line buffering disabled */
-    noecho();           /* Don't echo() while we do getch */
-    nodelay(win, true); /* getch is non-blocking */
-    wborder(win, ACS_LTEE, ACS_RTEE, ACS_TTEE, ACS_BTEE, ACS_ULCORNER,
-            ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
-    /* The parameters taken are
-     * 1. win: the window on which to operate
-     * 2. ls: character to be used for the left side of the window
-     * 3. rs: character to be used for the right side of the window
-     * 4. ts: character to be used for the top side of the window
-     * 5. bs: character to be used for the bottom side of the window
-     * 6. tl: character to be used for the top left corner of the window
-     * 7. tr: character to be used for the top right corner of the window
-     * 8. bl: character to be used for the bottom left corner of the window
-     * 9. br: character to be used for the bottom right corner of the window
-     */
-    wrefresh(win);
+void StatusScreen::print_status() {
+    print_current_time();
+    print_lives();
+    print_score();
 }
-
-void StatusScreen::print() { print_current_time(); }
-
-void StatusScreen::clear() { wclear(win); }
-
-void StatusScreen::render() { wrefresh(win); }
 
 /* PRIVATE */
 
-StatusScreen::StatusScreen() : res(0, 0), lives(0), score(0), timer(NULL) {}
+StatusScreen::StatusScreen() : Screen(), lives(0), score(0), timer(NULL) {}
 
 void StatusScreen::print_current_time() {
     timespec time = timer->get_current_time();
@@ -70,9 +51,13 @@ void StatusScreen::print_current_time() {
                   << (unsigned long)time.tv_sec;
     std::string time_str = string_stream.str();
     time_str.resize(20);
-    mvwprintw(win, 5, 5, time_str.c_str());
+    mvwprintw(get_win(), 5, 5, time_str.c_str());
 }
 
-// static
+void StatusScreen::print_lives() {
+    mvwprintw(get_win(), 6, 5, "Lives: %u", lives);
+}
 
-size_t const StatusScreen::box = 1;
+void StatusScreen::print_score() {
+    mvwprintw(get_win(), 7, 5, "Score: %u", score);
+}

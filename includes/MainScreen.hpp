@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MainScreen.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 17:25:56 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 11:54:28 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,13 @@
 #include "BluePrint.hpp"
 #include "Constants.hpp"
 #include "IGameEntity.hpp"
-#include "Point.hpp"
-#include "Resolution.hpp"
+#include "Screen.hpp"
 #include <iostream>
 #include <ncurses.h>
 
-class MainScreen {
+class MainScreen : public Screen {
   private:
-    static size_t const box;
-    Resolution const res;
-    Point const pos;
     static size_t const x_factor;
-    WINDOW *win;
     // constructors
     MainScreen();
     // methods
@@ -42,11 +37,7 @@ class MainScreen {
     // operators
     MainScreen &operator=(MainScreen const &rhs);
     // methods
-    void init();
-    void clear();
-    WINDOW *get_win();
-    void print(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
-    void render();
+    void print_grid(IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH]);
 };
 
 #endif /* MAINSCREEN_HPP */

@@ -14,10 +14,11 @@ SRCFILES	=	main.cpp\
 				KeyPress.cpp\
 				MainScreen.cpp\
 				MsTimer.cpp\
-				StatusScreen.cpp\
 				Obstacle.cpp\
 				Projectile.cpp\
-				Player.cpp
+				Player.cpp\
+				Screen.cpp\
+				StatusScreen.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
