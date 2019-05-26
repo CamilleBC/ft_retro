@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 18:57:33 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 20:51:37 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ Enemy::Enemy() : direction(1, 0) { init(); }
 
 Enemy::~Enemy() {}
 
-Enemy::Enemy(Point c_direction, int speed) : direction(c_direction), max_speed(speed), speed(speed) { init(); }
+Enemy::Enemy(Point c_direction, int speed)
+    : direction(c_direction), max_speed(speed), speed(speed) {
+    init();
+}
 
 Enemy::Enemy(Enemy const &a) { *this = a; }
 
@@ -35,7 +38,10 @@ Point Enemy::get_direction() const { return direction; }
 
 Point Enemy::get_move() const {
     speed--;
-    if (speed == 0){
+    reload--;
+    if (reload == 0)
+        reload = max_reload;
+    if (speed == 0) {
         speed = max_speed;
         return direction;
     } else {
@@ -43,13 +49,19 @@ Point Enemy::get_move() const {
     }
 }
 
-int Enemy::get_reward() const { return reward; }
-
 EntityType Enemy::get_type() const { return type; }
+
+bool Enemy::get_is_shooting() const { return reload == 1; }
+
+Point Enemy::get_shot() const { return Point(0, 1); }
+
+int Enemy::get_reward() const { return reward; }
 
 // setters
 
 void Enemy::set_direction(Point dir) { direction = dir; }
+
+void Enemy::set_is_shooting(bool shooting) { (void)shooting; }
 
 // collision
 
@@ -67,7 +79,6 @@ IGameEntity *Enemy::get_collided(Obstacle *e) {
 }
 
 IGameEntity *Enemy::get_collided(Projectile *e) {
-    e->add_score(reward);
     delete this;
     delete e;
     return NULL;
@@ -86,8 +97,8 @@ IGameEntity *Enemy::get_collided(Road *e) {
 /* PRIVATE */
 
 void Enemy::init() {
-    max_speed = 10;
-    speed = max_speed;
+    max_reload = 200;
+    reload = max_reload;
 }
 
 // static

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 19:35:47 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:02:49 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,9 @@ void Game::move_entity(IGameEntity ***new_grid, Point position) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
         int *projectile_score =
             (entity->get_type() == ::player) ? &score : NULL;
-        if (!new_grid[position.y + shot.y][position.x + shot.x])
+        if ((size_t)(position.y + shot.y) < GRID_HEIGHT && position.y + shot.y >= 0
+        && (size_t)(position.x + shot.x) < GRID_WIDTH && position.x + shot.x >= 0 &&
+        !new_grid[position.y + shot.y][position.x + shot.x])
             new_grid[position.y + shot.y][position.x + shot.x] =
                 new Projectile(shot, projectile_score);
         new_grid[position.y][position.x] = entity;
