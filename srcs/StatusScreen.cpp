@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 18:19:47 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:02:13 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,8 @@ void StatusScreen::print_status() {
 StatusScreen::StatusScreen() : Screen(), lives(0), score(0), timer(NULL) {}
 
 void StatusScreen::print_current_time() {
-    timespec time = timer->get_current_time();
-
-    std::ostringstream string_stream;
-    unsigned int minute = 0;
-    while (time.tv_sec >= 60) {
-        ++minute;
-        time.tv_sec -= 60;
-    }
-
-    string_stream << "Elapsed time: " << std::setfill('0') << std::setw(2)
-                  << minute << ":" << std::setfill('0') << std::setw(2)
-                  << (unsigned long)time.tv_sec;
-    std::string time_str = string_stream.str();
-    time_str.resize(20);
+    std::string time_str("Elapsed time: ");
+    time_str.append(timer->get_current_string());
     mvwprintw(get_win(), 5, 5, time_str.c_str());
 }
 

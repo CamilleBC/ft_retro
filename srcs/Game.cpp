@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 19:35:47 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 20:58:04 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,16 @@ bool Game::get_user_input() {
 }
 
 bool Game::pause() {
+    timer.start_pause();
     while (true) {
         int key = getch();
         switch (key) {
         case 'p':
+            timer.end_pause();
             return true;
             break;
         case 'q':
+            timer.end_pause();
             return false;
         default:
             break;
@@ -111,7 +114,8 @@ void Game::print_exit_message() const {
               << "Your final " << Colours::blue << "score" << Colours::nc
               << " was " << Colours::blue << score << ", in "
               << Colours::purple
-              //<< timer.get_current_time()
+              << timer.get_current_string()
+              << Colours::nc << "."
               << std::endl
               << "Well done, loser." << std::endl
               << std::endl;

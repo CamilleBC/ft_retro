@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   StatusScreen.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:31 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/25 18:48:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 20:55:58 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 #include "MsTimer.hpp"
 #include "Screen.hpp"
 #include <ctime>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
 #include <ncurses.h>
 
 class StatusScreen: public Screen{
