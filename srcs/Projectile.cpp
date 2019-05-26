@@ -83,6 +83,12 @@ IGameEntity *Projectile::get_collided(Player *e) {
     return NULL;
 }
 
+IGameEntity *Projectile::get_collided(Road *e)
+{
+    delete this;
+    return (IGameEntity *)e;
+}
+
 /* PRIVATE */
 
 // static

@@ -21,13 +21,15 @@ class Obstacle;
 class Projectile;
 class Enemy;
 class Player;
+class Road;
 
 enum EntityType
 {
 	enemy,
 	obstacle,
 	player,
-	projectile
+	projectile,
+    road
 };
 
 class IGameEntity {
@@ -49,6 +51,7 @@ class IGameEntity {
     virtual IGameEntity *get_collided(Enemy *) = 0;
     virtual IGameEntity *get_collided(Projectile *) = 0;
     virtual IGameEntity *get_collided(Player *) = 0;
+    virtual IGameEntity *get_collided(Road *) = 0;
 };
 
 #include "Enemy.hpp"

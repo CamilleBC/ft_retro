@@ -2,6 +2,7 @@
 #define RANDOMGENERATOR_HPP
 
 #include "Constants.hpp"
+#include "Road.hpp"
 #include "Enemy.hpp"
 #include "Obstacle.hpp"
 #include "Projectile.hpp"

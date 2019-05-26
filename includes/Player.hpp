@@ -51,6 +51,7 @@ class Player : public IGameEntity, public ICanShoot {
     IGameEntity *get_collided(Enemy *);
     IGameEntity *get_collided(Projectile *);
     IGameEntity *get_collided(Player *);
+    IGameEntity *get_collided(Road *);
 };
 
 #endif /* PLAYER_HPP */

@@ -18,7 +18,8 @@ SRCFILES	=	main.cpp\
 				Obstacle.cpp\
 				Projectile.cpp\
 				Player.cpp\
-				RandomGenerator.cpp
+				RandomGenerator.cpp\
+				Road.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)

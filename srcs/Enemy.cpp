@@ -76,6 +76,11 @@ IGameEntity *Enemy::get_collided(Player *e) {
     return NULL;
 }
 
+IGameEntity *Enemy::get_collided(Road *e) {
+    delete this;
+    return (IGameEntity *)e;
+}
+
 /* PRIVATE */
 
 void Enemy::init() { has_moved = false; }

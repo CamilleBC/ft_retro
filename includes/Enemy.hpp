@@ -48,6 +48,7 @@ class Enemy : public IGameEntity {
     IGameEntity *get_collided(Enemy *);
     IGameEntity *get_collided(Projectile *);
     IGameEntity *get_collided(Player *);
+    IGameEntity *get_collided(Road *e);
 };
 
 #endif /* ENEMY_HPP */

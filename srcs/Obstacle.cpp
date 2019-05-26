@@ -74,7 +74,7 @@ IGameEntity *Obstacle::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Obstacle::get_collided(Obstacle *e) {
     Obstacle *res = new Obstacle(
-        Point(direction.x + e->direction.x, direction.y + e->direction.y));
+        Point(direction.x, direction.y), speed + 1);
     delete this;
     delete e;
     return res;
@@ -95,6 +95,12 @@ IGameEntity *Obstacle::get_collided(Player *e) {
     delete e;
     return NULL;
 }
+
+IGameEntity *Obstacle::get_collided(Road *e) {
+    delete this;
+    return (IGameEntity *)e;
+}
+
 
 /* PRIVATE */
 

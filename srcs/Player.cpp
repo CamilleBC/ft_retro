@@ -68,8 +68,9 @@ IGameEntity *Player::get_collided(Obstacle *e) {
 }
 
 IGameEntity *Player::get_collided(Enemy *e) {
+    delete this;
     delete e;
-    return this;
+    return NULL;
 }
 
 IGameEntity *Player::get_collided(Projectile *e) {
@@ -81,6 +82,12 @@ IGameEntity *Player::get_collided(Projectile *e) {
 IGameEntity *Player::get_collided(Player *e) {
     delete e;
     return NULL;
+}
+
+IGameEntity *Player::get_collided(Road *e)
+{
+    delete this;
+    return (IGameEntity *)e;
 }
 
 /* PRIVATE */
