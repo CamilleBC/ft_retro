@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 21:51:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 22:25:41 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void Game::init() {
     noecho();              /* Don't echo() while we do getch */
     nodelay(stdscr, true); /* getch is non-blocking */
     curs_set(0);           /* Don't show the cursor */
+    init_colours();
     refresh();
     main_screen.init();
     status_screen.init();
@@ -142,12 +143,12 @@ void Game::init() {
 
 void Game::init_colours() {
     start_color();
-    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-    init_pair(3, COLOR_CYAN, COLOR_BLACK);
-    init_pair(4, COLOR_BLUE, COLOR_CYAN);
-    init_pair(5, COLOR_GREEN, COLOR_BLACK);
-    init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(SPACE_PAIR, COLOR_WHITE, COLOR_BLACK);
+    init_pair(OBSTACLE_PAIR, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(ENEMY_PAIR, COLOR_CYAN, COLOR_BLACK);
+    init_pair(ROAD_PAIR, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(PLAYER_PAIR, COLOR_GREEN, COLOR_BLACK);
+    init_pair(PROJECTILE_PAIR, COLOR_RED, COLOR_BLACK);
 }
 
 int Game::rand_int(int n) { return ((int)((rand() / (double)RAND_MAX) * n)); }
