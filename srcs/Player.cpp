@@ -41,9 +41,14 @@ Point Player::get_direction() const { return direction; }
 bool Player::get_is_shooting() const { return is_shooting; }
 
 Point Player::get_move() const {
-    Point tmp = direction;
-    // direction = Point(0, 0);
-    return tmp;
+    --speed;
+    if (speed == 0) {
+        speed = max_speed;
+        Point tmp = direction;
+//        direction = Point(0, 0);
+        return tmp;
+    }
+    return Point(0, 0);
 }
 
 Point Player::get_shot() const { return shot; }
@@ -96,6 +101,8 @@ void Player::init() {
     score = 0;
     is_shooting = false;
     shot = Point(0, -1);
+    speed = 5;
+    max_speed = 5;
 }
 
 // static
