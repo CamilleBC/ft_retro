@@ -20,4 +20,4 @@
 #define MENUSCREEN_HEIGHT (size_t)42
 #define MENUSCREEN_WIDTH (size_t)142
 
-#define FPS 30
+#define FPS 60

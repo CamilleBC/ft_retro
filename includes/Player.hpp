@@ -19,6 +19,7 @@
 class Player : public IGameEntity, public ICanShoot {
   private:
     static const BluePrint blueprint;
+    static const EntityType type;
     mutable Point direction;
     mutable bool has_moved;
     bool is_shooting;
@@ -39,6 +40,8 @@ class Player : public IGameEntity, public ICanShoot {
     Point get_direction() const;
     Point get_move() const;
     Point get_shot() const;
+    EntityType get_type() const;
+
     // setters
     void set_is_shooting(bool shooting);
     void set_direction(Point);
@@ -48,6 +51,7 @@ class Player : public IGameEntity, public ICanShoot {
     IGameEntity *get_collided(Enemy *);
     IGameEntity *get_collided(Projectile *);
     IGameEntity *get_collided(Player *);
+    IGameEntity *get_collided(Road *);
 };
 
 #endif /* PLAYER_HPP */

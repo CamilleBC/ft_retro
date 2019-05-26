@@ -48,6 +48,8 @@ Point Projectile::get_move() const {
     }
 }
 
+EntityType Projectile::get_type() const { return type; }
+
 // setters
 
 void Projectile::set_direction(Point dir) { direction = dir; }
@@ -81,7 +83,14 @@ IGameEntity *Projectile::get_collided(Player *e) {
     return NULL;
 }
 
+IGameEntity *Projectile::get_collided(Road *e)
+{
+    delete this;
+    return (IGameEntity *)e;
+}
+
 /* PRIVATE */
 
 // static
 BluePrint const Projectile::blueprint = BluePrint(new std::string(" ' "), 1);
+EntityType const Projectile::type = projectile;

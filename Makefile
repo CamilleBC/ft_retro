@@ -5,7 +5,7 @@
 EXEC	=	ft_retro
 
 CXX			=	clang++
-CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g #-fsanitize=address
+CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g -Og -fsanitize=address
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
@@ -18,6 +18,8 @@ SRCFILES	=	main.cpp\
 				Obstacle.cpp\
 				Projectile.cpp\
 				Player.cpp\
+				RandomGenerator.cpp\
+				Road.cpp\
 				Screen.cpp\
 				StatusScreen.cpp
 

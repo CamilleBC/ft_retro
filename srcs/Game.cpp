@@ -20,6 +20,7 @@ Game::Game()
                                  MAINSCREEN_WIDTH + 1, 3, &timer)) {
     std::cout << "Game created." << std::endl;
     init();
+    random_gen = new RandomGenerator();
     player = new Player(Point(0, 0));
     init_grid();
 }
@@ -134,30 +135,6 @@ void Game::init_grid() {
     grid[50][50] = new Enemy(Point(0, -1));
 }
 
-void Game::spawn_obstacle() {
-    int rand = rand_int(1000);
-    if (rand < 800)
-        return;
-    if (rand < 805) {
-        for (size_t i = 0; i < GRID_WIDTH; ++i) {
-            grid[0][i] = new Obstacle(Point(0, 1));
-        }
-        return;
-    }
-    if (rand < 900) {
-        rand = rand_int(GRID_WIDTH - 3);
-        for (int i = 0; i < 6; i += 2) {
-            for (int j = 0; j < 3; ++j) {
-                grid[i][rand + j] = new Obstacle(Point(0, 1));
-            }
-        }
-        return;
-    }
-    for (int i = 0; i < rand_int(4) + 2; ++i) {
-        grid[rand_int(GRID_HEIGHT / 20)][rand_int(GRID_WIDTH)] = new Obstacle();
-    }
-}
-
 void Game::delete_grid() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
@@ -169,8 +146,9 @@ void Game::delete_grid() {
 }
 
 void Game::play_frame() {
-    spawn_obstacle();
-    for (size_t h = 0; h < GRID_HEIGHT; ++h) {
+    static size_t frames = 0;
+    random_gen->spawn(grid, frames);
+    for (int h = (int)(GRID_HEIGHT - 1); h >= 0; --h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
                 move_entity(Point(w, h));
@@ -184,6 +162,7 @@ void Game::play_frame() {
             }
         }
     }
+    frames++;
 }
 
 void Game::move_entity(Point position) {

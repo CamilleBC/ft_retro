@@ -21,6 +21,7 @@
 class Enemy : public IGameEntity {
   private:
     static const BluePrint blueprint;
+    static const EntityType type;
     Point direction;
     mutable bool has_moved;
     Enemy();
@@ -38,6 +39,7 @@ class Enemy : public IGameEntity {
     Point get_direction() const;
     BluePrint const &get_blueprint() const;
     Point get_move() const;
+    EntityType get_type() const;
     //setters
     void set_direction(Point dir);
     // collision
@@ -46,6 +48,7 @@ class Enemy : public IGameEntity {
     IGameEntity *get_collided(Enemy *);
     IGameEntity *get_collided(Projectile *);
     IGameEntity *get_collided(Player *);
+    IGameEntity *get_collided(Road *e);
 };
 
 #endif /* ENEMY_HPP */

@@ -50,6 +50,8 @@ Point Player::get_move() const {
 
 Point Player::get_shot() const { return shot; }
 
+EntityType Player::get_type() const { return type; }
+
 // setters
 
 void Player::set_direction(Point input) { direction = input; }
@@ -66,8 +68,9 @@ IGameEntity *Player::get_collided(Obstacle *e) {
 }
 
 IGameEntity *Player::get_collided(Enemy *e) {
+    delete this;
     delete e;
-    return this;
+    return NULL;
 }
 
 IGameEntity *Player::get_collided(Projectile *e) {
@@ -81,6 +84,12 @@ IGameEntity *Player::get_collided(Player *e) {
     return NULL;
 }
 
+IGameEntity *Player::get_collided(Road *e)
+{
+    delete this;
+    return (IGameEntity *)e;
+}
+
 /* PRIVATE */
 
 void Player::init() {
@@ -92,3 +101,4 @@ void Player::init() {
 // static
 
 BluePrint const Player::blueprint = BluePrint(new std::string(")^("), 1);
+EntityType const Player::type = player;
