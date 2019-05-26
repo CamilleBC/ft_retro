@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 19:04:40 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:29:40 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ Projectile &Projectile::operator=(Projectile const &a) {
     direction = a.direction;
     return *this;
 }
+
+void Projectile::add_score(int value) {
+    if (score) {
+        (*score) += value;
+    }
+}
+
 // getters
 
 BluePrint const &Projectile::get_blueprint() const { return blueprint; }

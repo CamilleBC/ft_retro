@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 18:18:06 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:32:41 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 class Game {
   private:
-    MenuScreen menu_screen;
+    // MenuScreen menu_screen;
     MainScreen main_screen;
     StatusScreen status_screen;
     Player *player;

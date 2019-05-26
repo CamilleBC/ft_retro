@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 19:03:48 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:35:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <stdlib.h>
 
 Game::Game()
-    : menu_screen(MenuScreen(MENUSCREEN_HEIGHT, MENUSCREEN_WIDTH, 40, 40)),
-      main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
+    // : menu_screen(MenuScreen(MENUSCREEN_HEIGHT, MENUSCREEN_WIDTH, 40, 40)),
+    : main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
       status_screen(StatusScreen(STATUSSCREEN_HEIGHT, STATUSSCREEN_WIDTH, 0,
                                  MAINSCREEN_WIDTH + 1, 3, &timer)),
       lives(3), score(0) {
@@ -199,11 +199,8 @@ void Game::play_frame() {
             }
         }
     }
+    grid = new_grid;
     frames++;
-
-void Game::spawn_player() {
-    player = new Player(Point(0,0), &lives);
-    grid[70][40] = player;
 }
 
 void Game::move_entity(IGameEntity ***new_grid, Point position) {

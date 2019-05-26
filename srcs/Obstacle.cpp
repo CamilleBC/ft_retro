@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 18:55:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:30:00 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ Point Obstacle::get_direction() const { return direction; }
 
 Point Obstacle::get_move() const {
     speed--;
-    if (speed == 0){
+    if (speed == 0) {
         speed = max_speed;
         return direction;
     } else {
@@ -51,14 +51,7 @@ Point Obstacle::get_move() const {
     }
 }
 
-Point Obstacle::get_rand_dir() const {
-    int sign1 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
-    //   int sign2 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
-    int value1 = sign1 * (int)((rand() / (double)RAND_MAX) * 4);
-    int value2 = (int)((rand() / (double)RAND_MAX) * 4) + 1;
-
-    return (Point(value1, value2));
-}
+int Obstacle::get_reward() const { return reward; }
 
 EntityType Obstacle::get_type() const { return type; }
 
@@ -71,8 +64,7 @@ void Obstacle::set_direction(Point dir) { direction = dir; }
 IGameEntity *Obstacle::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Obstacle::get_collided(Obstacle *e) {
-    Obstacle *res = new Obstacle(
-        Point(direction.x, direction.y), speed + 1);
+    Obstacle *res = new Obstacle(Point(direction.x, direction.y), speed + 1);
     delete this;
     delete e;
     return res;
@@ -100,7 +92,6 @@ IGameEntity *Obstacle::get_collided(Road *e) {
     delete this;
     return (IGameEntity *)e;
 }
-
 
 /* PRIVATE */
 
