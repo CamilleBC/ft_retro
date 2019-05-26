@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 13:35:56 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 14:34:26 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:21:33 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 MenuScreen::MenuScreen(unsigned int height, unsigned int width,
                        unsigned int starty, unsigned int startx)
     : Screen(height, width, starty, startx,
-             Borders('-', '-', '-', '-', '-', '-', '-', '-')) {
-    std::cout << "MenuScreen created." << std::endl;
+             Borders('|', '|', '-', '-', ACS_ULCORNER, ACS_URCORNER,
+             ACS_LLCORNER, ACS_LRCORNER)) {
 }
 
-MenuScreen::~MenuScreen() { std::cout << "MenuScreen died." << std::endl; }
+MenuScreen::~MenuScreen() {}
 
 void MenuScreen::print_menu() {
     mvwprintw(get_win(), 5, 5, " _____ _____       _____ _____ _____ _____ _____ ");

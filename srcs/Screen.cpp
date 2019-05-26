@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 10:03:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 15:20:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:22:28 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 Screen::Screen(unsigned int height, unsigned int width, unsigned int starty,
                unsigned int startx, Borders borders)
-    : borders(borders), pos(startx, starty), res(width, height) {
-    std::cout << "Screen created." << std::endl;
-}
+    : borders(borders), pos(startx, starty), res(width, height) {}
 
-Screen::~Screen() { std::cout << "Screen died." << std::endl; }
+Screen::~Screen() {}
 
 // methods
 
@@ -32,7 +30,6 @@ void Screen::init() {
     wborder(win, borders.left, borders.right, borders.top, borders.bottom,
             borders.top_left, borders.top_right, borders.bottom_left,
             borders.bottom_right);
-    // wrefresh(win);
 }
 
 void Screen::render() { wrefresh(win); }

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 12:03:10 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:21:39 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ MainScreen::MainScreen(unsigned int height, unsigned int width,
                        unsigned int starty, unsigned int startx)
     : Screen(height, width, starty, startx,
              Borders(ACS_LTEE, ACS_RTEE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER,
-                     ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER)) {
-    std::cout << "MainScreen created." << std::endl;
-}
+                     ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER)) {}
 
-MainScreen::~MainScreen() { std::cout << "MainScreen died." << std::endl; }
+MainScreen::~MainScreen() {}
 
 void MainScreen::print(IGameEntity ***grid) {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
@@ -42,8 +40,8 @@ void MainScreen::print_empty(Point coord) {
 
 void MainScreen::print_object(BluePrint const &object, Point coord) {
     for (size_t i = 0; i < object.size; ++i) {
-        mvwprintw(get_win(), coord.y + i + get_box(), coord.x * x_factor + get_box(),
-                  object.texture[i].c_str());
+        mvwprintw(get_win(), coord.y + i + get_box(),
+                  coord.x * x_factor + get_box(), object.texture[i].c_str());
     }
 }
 

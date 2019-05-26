@@ -1,8 +1,12 @@
 #ifndef ROAD_HPP
 #define ROAD_HPP
 
+#include "Enemy.hpp"
 #include "IGameEntity.hpp"
+#include "Obstacle.hpp"
+#include "Player.hpp"
 #include "Point.hpp"
+#include "Projectile.hpp"
 #include <iostream>
 
 class Road : public IGameEntity {
@@ -25,7 +29,7 @@ class Road : public IGameEntity {
     virtual Point get_direction() const;
     Point get_move() const;
     EntityType get_type() const;
-    //setters
+    // setters
     void set_direction(Point dir);
     // collision
     IGameEntity *collide(IGameEntity *);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 14:20:07 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:55:05 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ Point Obstacle::get_rand_dir() const {
     return (Point(value1, value2));
 }
 
+int Obstacle::get_reward() const { return reward; }
+
 EntityType Obstacle::get_type() const { return type; }
+
 // setters
 
 void Obstacle::set_direction(Point dir) { direction = dir; }
@@ -86,6 +89,7 @@ IGameEntity *Obstacle::get_collided(Enemy *e) {
 }
 
 IGameEntity *Obstacle::get_collided(Projectile *e) {
+    e->add_score(reward);
     delete e;
     delete this;
     return NULL;
@@ -114,3 +118,4 @@ void Obstacle::init() {
 
 BluePrint const Obstacle::blueprint = BluePrint(new std::string("(@)"), 1);
 EntityType const Obstacle::type = obstacle;
+int const Obstacle::reward = 20;

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 17:12:06 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:03:48 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ Game::Game()
       main_screen(MainScreen(MAINSCREEN_HEIGHT, MAINSCREEN_WIDTH, 0, 0)),
       status_screen(StatusScreen(STATUSSCREEN_HEIGHT, STATUSSCREEN_WIDTH, 0,
                                  MAINSCREEN_WIDTH + 1, 3, &timer)),
-      lives(3) {
-    std::cout << "Game created." << std::endl;
+      lives(3), score(0) {
     init();
     random_gen = new RandomGenerator();
     init_grid();
@@ -30,7 +29,7 @@ Game::~Game() {
     clear();
     endwin();
     delete_grid();
-    std::cout << "Game destroyed" << std::endl;
+    print_exit_message();
 }
 
 bool Game::get_user_input() {
@@ -83,27 +82,39 @@ bool Game::pause() {
 }
 
 void Game::run() {
-    menu_screen.print_menu();
-    menu_screen.render();
-    flushinp();
-    while (true) {
-        if (getch() != KEY_ENTER) {
-            break;
-        }
-    }
+    // menu_screen.print_menu();
+    // menu_screen.render();
+    // flushinp();
+    // while (true) {
+    //     if (getch() != KEY_ENTER) {
+    //         break;
+    //     }
+    // }
     while (true) {
         play_frame();
         if (!lives_observer() || !get_user_input()) {
             break;
         }
         main_screen.print(grid);
-        status_screen.set_score(player->get_score());
+        status_screen.set_score(score);
         status_screen.print_status();
         main_screen.render();
         status_screen.render();
         while (!timer.is_new_frame()) {
         }
     }
+}
+
+void Game::print_exit_message() const {
+    std::cout << Colours::green << "Congratulations, you lost!" << Colours::nc
+              << std::endl
+              << "Your final " << Colours::blue << "score" << Colours::nc
+              << " was " << Colours::blue << score << ", in "
+              << Colours::purple
+              //<< timer.get_current_time()
+              << std::endl
+              << "Well done, loser." << std::endl
+              << std::endl;
 }
 
 bool Game::lives_observer() {
@@ -194,7 +205,7 @@ void Game::play_frame() {
 }
 
 void Game::spawn_player() {
-    player = new Player(Point(0,0), &lives);
+    player = new Player(Point(0, 0), &lives);
     grid[70][40] = player;
 }
 
@@ -220,8 +231,10 @@ void Game::move_entity(Point position) {
     if (dynamic_cast<ICanShoot *>(entity) &&
         dynamic_cast<ICanShoot *>(entity)->get_is_shooting()) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
+        int *projectile_score =
+            (entity->get_type() == ::player) ? &score : NULL;
         grid[position.y + shot.y][position.x + shot.x] =
-            new Projectile(entity, shot);
+            new Projectile(shot, projectile_score);
         grid[position.y][position.x] = entity;
         dynamic_cast<ICanShoot *>(entity)->set_is_shooting(false);
     } else {

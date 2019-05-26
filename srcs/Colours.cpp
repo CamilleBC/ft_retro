@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Constants.hpp                                      :+:      :+:    :+:   */
+/*   Colours.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/25 11:25:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 18:36:27 by cbaillat         ###   ########.fr       */
+/*   Created: 2019/05/21 10:40:04 by cbaillat          #+#    #+#             */
+/*   Updated: 2019/05/21 10:46:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Colours.hpp"
 
-#define GRID_HEIGHT (size_t)80
-#define GRID_WIDTH (size_t)80
-#define MAINSCREEN_HEIGHT (size_t)82
-#define MAINSCREEN_WIDTH (size_t)242
-#define STATUSSCREEN_HEIGHT (size_t)82
-#define STATUSSCREEN_WIDTH (size_t)82
-#define MENUSCREEN_HEIGHT (size_t)42
-#define MENUSCREEN_WIDTH (size_t)142
+Colours::Colours() {}
 
-#define FPS 60
+Colours::~Colours() {}
+
+const char *Colours::red = "\033[1;31m";
+const char *Colours::green = "\033[1;32m";
+const char *Colours::yellow = "\033[1;33m";
+const char *Colours::blue = "\033[1;34m";
+const char *Colours::purple = "\033[1;35m";
+const char *Colours::cyan = "\033[1;36m";
+const char *Colours::white = "\033[1;37m";
+const char *Colours::nc = "\033[0m";

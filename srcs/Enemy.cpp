@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 09:21:52 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:57:33 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ Point Enemy::get_move() const {
     }
 }
 
+int Enemy::get_reward() const { return reward; }
+
 EntityType Enemy::get_type() const { return type; }
 
 // setters
@@ -66,6 +68,7 @@ IGameEntity *Enemy::get_collided(Obstacle *e) {
 }
 
 IGameEntity *Enemy::get_collided(Projectile *e) {
+    e->add_score(reward);
     delete this;
     delete e;
     return NULL;
@@ -89,4 +92,4 @@ void Enemy::init() { has_moved = false; }
 
 BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1);
 EntityType const Enemy::type = enemy;
-
+int const Enemy::reward = 100;

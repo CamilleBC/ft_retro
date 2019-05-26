@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:44:43 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 10:47:30 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:59:53 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROJECTILE_HPP
 #define PROJECTILE_HPP
 
+#include "Enemy.hpp"
 #include "IGameEntity.hpp"
+#include "Obstacle.hpp"
+#include "Player.hpp"
 #include "Point.hpp"
+#include "Road.hpp"
 #include <iostream>
 
 class Projectile : public IGameEntity {
@@ -22,23 +26,23 @@ class Projectile : public IGameEntity {
     static const BluePrint blueprint;
     static const EntityType type;
     Point direction;
-    mutable bool has_moved;
-    IGameEntity *owner;
+    int *score;
     Projectile();
 
   public:
-    Projectile(IGameEntity* owner, Point direction);
+    Projectile(Point direction, int *score);
     ~Projectile();
     Projectile(Projectile const &);
     Projectile &operator=(Projectile const &);
 
+    void add_score(int value);
     void end_turn();
     // getters
     BluePrint const &get_blueprint() const;
     virtual Point get_direction() const;
     Point get_move() const;
     EntityType get_type() const;
-    //setters
+    // setters
     void set_direction(Point dir);
     // collision
     IGameEntity *collide(IGameEntity *);

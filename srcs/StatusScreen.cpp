@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   StatusScreen.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 12:03:42 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:19:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,9 @@ StatusScreen::StatusScreen(unsigned int height, unsigned int width,
     : Screen(height, width, starty, startx,
              Borders(ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER,
                      ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER)),
-      lives(lives), score(0), timer(timer) {
-    std::cout << "StatusScreen created." << std::endl;
-}
+      lives(lives), score(0), timer(timer) {}
 
-StatusScreen::~StatusScreen() {
-    std::cout << "StatusScreen died." << std::endl;
-}
+StatusScreen::~StatusScreen() {}
 
 void StatusScreen::print_status() {
     print_current_time();
@@ -61,8 +57,6 @@ void StatusScreen::print_lives() {
 
 void StatusScreen::set_score(unsigned int new_score) { score = new_score; }
 void StatusScreen::set_lives(unsigned int new_lives) { lives = new_lives; }
-
-
 
 void StatusScreen::print_score() {
     mvwprintw(get_win(), 7, 5, "Score: %u", score);

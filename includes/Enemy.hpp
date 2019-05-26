@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:58:32 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 09:15:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:43:14 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 
 #include "IGameEntity.hpp"
 #include "Obstacle.hpp"
+#include "Player.hpp"
 #include "Point.hpp"
+#include "Projectile.hpp"
+#include "Road.hpp"
 #include <iostream>
 
 class Enemy : public IGameEntity {
   private:
     static const BluePrint blueprint;
     static const EntityType type;
+    static const int reward;
     Point direction;
     mutable bool has_moved;
     Enemy();
@@ -39,8 +43,9 @@ class Enemy : public IGameEntity {
     Point get_direction() const;
     BluePrint const &get_blueprint() const;
     Point get_move() const;
+    int get_reward() const;
     EntityType get_type() const;
-    //setters
+    // setters
     void set_direction(Point dir);
     // collision
     IGameEntity *collide(IGameEntity *);

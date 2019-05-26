@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Player.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 14:10:08 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:01:16 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 Player::Player() : direction(0, 0), lives(NULL) { init(); }
 
-Player::Player(Point c_direction, unsigned int *lives) : direction(c_direction), lives(lives) { init(); }
-
-Player::~Player() {
-    (*lives) = *lives - 1;
+Player::Player(Point c_direction, unsigned int *lives)
+    : direction(c_direction), lives(lives) {
+    init();
 }
+
+Player::~Player() { (*lives) = *lives - 1; }
 
 Player::Player(Player const &a) { *this = a; }
 
@@ -30,8 +31,6 @@ Player &Player::operator=(Player const &a) {
 // methods
 
 void Player::end_turn() { has_moved = false; }
-
-void Player::add_score(int value) { score += value; }
 
 // getters
 
@@ -56,8 +55,6 @@ Point Player::get_shot() const { return shot; }
 
 EntityType Player::get_type() const { return type; }
 
-int Player::get_score() const { return score; }
-
 // setters
 
 void Player::set_direction(Point input) { direction = input; }
@@ -65,6 +62,7 @@ void Player::set_direction(Point input) { direction = input; }
 void Player::set_is_shooting(bool shooting) { is_shooting = shooting; }
 
 // collision
+
 IGameEntity *Player::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Player::get_collided(Obstacle *e) {
@@ -91,8 +89,7 @@ IGameEntity *Player::get_collided(Player *e) {
     return NULL;
 }
 
-IGameEntity *Player::get_collided(Road *e)
-{
+IGameEntity *Player::get_collided(Road *e) {
     delete this;
     return (IGameEntity *)e;
 }
@@ -100,7 +97,6 @@ IGameEntity *Player::get_collided(Road *e)
 /* PRIVATE */
 
 void Player::init() {
-    score = 0;
     is_shooting = false;
     has_moved = false;
     shot = Point(0, -1);

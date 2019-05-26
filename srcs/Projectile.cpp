@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 11:55:08 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:04:40 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Projectile.hpp"
 
-Projectile::Projectile() : direction(0, 0) {
-    owner = NULL;
-    has_moved = false;
-}
+Projectile::Projectile() : direction(0, 0), score(NULL) {}
 
 Projectile::~Projectile() {}
 
-Projectile::Projectile(IGameEntity *owner, Point direction) : direction(direction), owner(owner) {}
+Projectile::Projectile(Point direction, int *score)
+    : direction(direction), score(score) {}
 
 Projectile::Projectile(Projectile const &a) { *this = a; }
 
@@ -30,7 +28,8 @@ Projectile &Projectile::operator=(Projectile const &a) {
 
 // methods
 
-void Projectile::end_turn() { has_moved = false; }
+void Projectile::add_score(int value) { (*score) = (*score) + value; }
+void Projectile::end_turn() {}
 
 // getters
 
@@ -38,14 +37,7 @@ BluePrint const &Projectile::get_blueprint() const { return blueprint; }
 
 Point Projectile::get_direction() const { return direction; }
 
-Point Projectile::get_move() const {
-    if (has_moved) {
-        return Point(0, 0);
-    } else {
-        has_moved = true;
-        return direction;
-    }
-}
+Point Projectile::get_move() const { return direction; }
 
 EntityType Projectile::get_type() const { return type; }
 
@@ -60,15 +52,18 @@ IGameEntity *Projectile::collide(IGameEntity *e) {
 }
 
 IGameEntity *Projectile::get_collided(Obstacle *e) {
-    if (dynamic_cast<Player *>(owner)){
-        dynamic_cast<Player *>(owner)->add_score(100);
+    if (score) {
+        (*score) += e->get_reward();
     }
-    delete this;
     delete e;
+    delete this;
     return NULL;
 }
 
 IGameEntity *Projectile::get_collided(Enemy *e) {
+    if (score) {
+        (*score) += e->get_reward();
+    }
     delete this;
     delete e;
     return NULL;
@@ -84,8 +79,7 @@ IGameEntity *Projectile::get_collided(Player *e) {
     return e->get_collided(this);
 }
 
-IGameEntity *Projectile::get_collided(Road *e)
-{
+IGameEntity *Projectile::get_collided(Road *e) {
     delete this;
     return (IGameEntity *)e;
 }

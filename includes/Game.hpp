@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   Game.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 16:27:12 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 18:18:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include "Colours.hpp"
 #include "Enemy.hpp"
-#include "RandomGenerator.hpp"
 #include "IGameEntity.hpp"
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
 #include "MenuScreen.hpp"
 #include "Obstacle.hpp"
 #include "Player.hpp"
+#include "RandomGenerator.hpp"
 #include "StatusScreen.hpp"
 
 #include <locale.h>
@@ -33,6 +34,7 @@ class Game {
     StatusScreen status_screen;
     Player *player;
     unsigned int lives;
+    int score;
     RandomGenerator *random_gen;
     MsTimer timer;
     IGameEntity ***grid;
@@ -51,8 +53,8 @@ class Game {
     void spawn_player();
     bool lives_observer();
     IGameEntity **create_array1D();
-
     IGameEntity ***create_grid();
+    void print_exit_message() const;
 
   public:
     Game();
