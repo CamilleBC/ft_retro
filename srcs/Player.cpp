@@ -6,7 +6,7 @@
 /*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 18:35:50 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:06:51 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool Player::get_is_shooting() const { return is_shooting; }
 
 Point Player::get_move() const {
     Point tmp = direction;
-    direction = Point(0, 0);
+    // direction = Point(0, 0);
     return tmp;
 }
 
