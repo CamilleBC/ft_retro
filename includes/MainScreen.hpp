@@ -14,6 +14,7 @@
 #define MAINSCREEN_HPP
 
 #include "BluePrint.hpp"
+#include "Point.hpp"
 #include "Constants.hpp"
 #include "IGameEntity.hpp"
 #include "Screen.hpp"

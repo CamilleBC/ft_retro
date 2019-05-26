@@ -26,6 +26,8 @@ class Colours {
 
     Colours();
     ~Colours();
+    Colours(Colours const &);
+    Colours &operator=(Colours const &);
 };
 
 

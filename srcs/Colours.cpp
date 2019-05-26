@@ -16,6 +16,12 @@ Colours::Colours() {}
 
 Colours::~Colours() {}
 
+Enemy::Enemy(Enemy const &a) { *this = a; }
+
+Enemy &Enemy::operator=(Enemy const &a){
+    return *this;
+}
+
 const char *Colours::red = "\033[1;31m";
 const char *Colours::green = "\033[1;32m";
 const char *Colours::yellow = "\033[1;33m";
