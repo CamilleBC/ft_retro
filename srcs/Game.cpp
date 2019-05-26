@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 20:58:04 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:10:56 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,6 @@ bool Game::pause() {
 }
 
 void Game::run() {
-    // menu_screen.print_menu();
-    // menu_screen.render();
-    // flushinp();
-    // while (true) {
-    //     if (getch() != KEY_ENTER) {
-    //         break;
-    //     }
-    // }
     while (true) {
         play_frame();
         if (!lives_observer() || !get_user_input()) {
@@ -109,14 +101,12 @@ void Game::run() {
 }
 
 void Game::print_exit_message() const {
-    std::cout << Colours::green << "Congratulations, you lost!" << Colours::nc
+    std::cout << std::endl
+              << Colours::green << "Congratulations, you lost!" << Colours::nc
               << std::endl
               << "Your final " << Colours::blue << "score" << Colours::nc
-              << " was " << Colours::blue << score << ", in "
-              << Colours::purple
-              << timer.get_current_string()
-              << Colours::nc << "."
-              << std::endl
+              << " was " << Colours::blue << score << ", in " << Colours::purple
+              << timer.get_current_string() << Colours::nc << "." << std::endl
               << "Well done, loser." << std::endl
               << std::endl;
 }
@@ -230,7 +220,11 @@ void Game::move_entity(IGameEntity ***new_grid, Point position) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
         int *projectile_score =
             (entity->get_type() == ::player) ? &score : NULL;
-        if (!new_grid[position.y + shot.y][position.x + shot.x])
+        if ((size_t)(position.y + shot.y) < GRID_HEIGHT &&
+            position.y + shot.y >= 0 &&
+            (size_t)(position.x + shot.x) < GRID_WIDTH &&
+            position.x + shot.x >= 0 &&
+            !new_grid[position.y + shot.y][position.x + shot.x])
             new_grid[position.y + shot.y][position.x + shot.x] =
                 new Projectile(shot, projectile_score);
         new_grid[position.y][position.x] = entity;

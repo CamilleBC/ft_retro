@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 19:32:41 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:10:38 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,17 @@
 #include "IGameEntity.hpp"
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
-#include "MenuScreen.hpp"
 #include "Obstacle.hpp"
 #include "Player.hpp"
 #include "RandomGenerator.hpp"
 #include "StatusScreen.hpp"
 
+#include <iostream>
 #include <locale.h>
 #include <unistd.h> // usleep
 
 class Game {
   private:
-    // MenuScreen menu_screen;
     MainScreen main_screen;
     StatusScreen status_screen;
     Player *player;

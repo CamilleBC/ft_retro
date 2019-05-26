@@ -150,7 +150,7 @@ void RandomGenerator::spawn(IGameEntity ***grid, size_t frames)
 	int rand;
 	static int diff = 1;
 
-	rand = get_rand_int(frames / 6);
+	rand = get_rand_int(frames / 60);
 	if (frames > 0 && frames % 3600 < 120 * 5)
 	{
 		spawn_road(grid, frames % 3600);
@@ -169,7 +169,7 @@ void RandomGenerator::spawn(IGameEntity ***grid, size_t frames)
 		else
 			spawn_line(obstacle, grid);
 	}
-	if ((frames % (100 / diff)))
+	if ((frames % (200 / diff)))
 		return ;
 	if (rand > 10)
 	{
