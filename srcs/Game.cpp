@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 22:25:41 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 22:39:05 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ Game::Game()
 Game::~Game() {
     clear();
     endwin();
+    empty_grid();
     delete_grid();
     print_exit_message();
 }
@@ -169,7 +170,7 @@ IGameEntity ***Game::create_grid() {
     return array2D;
 }
 
-void Game::delete_grid() {
+void Game::empty_grid() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
             if (grid[h][w]) {
@@ -177,6 +178,13 @@ void Game::delete_grid() {
             }
         }
     }
+}
+
+void Game::delete_grid() {
+    for (size_t i = 0; i < GRID_HEIGHT; i++) {
+        delete grid[i];
+    }
+    delete grid;
 }
 
 void Game::spawn_player() {
@@ -203,6 +211,7 @@ void Game::play_frame() {
             }
         }
     }
+    delete_grid();
     grid = new_grid;
     frames++;
 }

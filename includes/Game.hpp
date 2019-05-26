@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   Game.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
 /*   Updated: 2019/05/26 21:41:09 by cbaillat         ###   ########.fr       */
@@ -43,6 +43,7 @@ class Game {
     Game &operator=(Game const &rhs);
     // methods
     void delete_grid();
+    void empty_grid();
     void init();
     void init_colours();
     void init_mainscreen();
