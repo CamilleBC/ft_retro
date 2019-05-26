@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:56:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 21:55:39 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 22:15:34 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void MainScreen::print_empty(Point coord) {
 
 void MainScreen::print_object(BluePrint const &object, Point coord) {
     for (size_t i = 0; i < object.size; ++i) {
-        attron(COLOR_PAIR(object.colour_pair));
+        wattron(get_win(), COLOR_PAIR(object.colour_pair));
+        wattron(get_win(), COLOR_PAIR(2));
         mvwprintw(get_win(), coord.y + i + get_box(),
                   coord.x * x_factor + get_box(), object.texture[i].c_str());
-        attroff(COLOR_PAIR(object.colour_pair));
+        wattroff(get_win(), COLOR_PAIR(object.colour_pair));
     }
 }
+
 
 /* PRIVATE */
 
