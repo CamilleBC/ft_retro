@@ -14,6 +14,8 @@ class RandomGenerator {
     void spawn_nrandom_entity(EntityType type, IGameEntity ***grid, int nb_spawn);
     void spawn_square(EntityType type, IGameEntity ***grid);
     void spawn_line(EntityType type, IGameEntity ***grid);
+    void spawn_road(IGameEntity ***grid, size_t frames);
+
 
   public:
     RandomGenerator();

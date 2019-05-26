@@ -48,7 +48,7 @@ class Game {
     void init_grid();
     void init_mainscreen();
     void play_frame();
-    void move_entity(Point position);
+    void move_entity(IGameEntity*** new_grid, Point position);
     void spawn_obstacle();
     void spawn_player();
     bool lives_observer();

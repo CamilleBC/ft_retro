@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:58:32 by chaydont          #+#    #+#             */
 /*   Updated: 2019/05/26 18:43:14 by cbaillat         ###   ########.fr       */
@@ -27,18 +27,18 @@ class Enemy : public IGameEntity {
     static const EntityType type;
     static const int reward;
     Point direction;
-    mutable bool has_moved;
+    int max_speed;
+    mutable int speed;
     Enemy();
     void init();
 
   public:
-    Enemy(Point);
+    Enemy(Point, int);
     ~Enemy();
     Enemy(Enemy const &);
     Enemy &operator=(Enemy const &);
 
     // methods
-    void end_turn();
     // getters
     Point get_direction() const;
     BluePrint const &get_blueprint() const;

@@ -12,7 +12,7 @@
 
 #include "Obstacle.hpp"
 
-Obstacle::Obstacle() : direction(get_rand_dir()) { init(); }
+Obstacle::Obstacle() : direction(1, 0) { init(); }
 
 Obstacle::Obstacle(Point c_direction, int speed)
     : direction(c_direction), max_speed(speed), speed(speed) {
@@ -35,8 +35,6 @@ Obstacle &Obstacle::operator=(Obstacle const &rhs) {
 
 // methods
 
-void Obstacle::end_turn() { has_moved = false; }
-
 // getters
 
 BluePrint const &Obstacle::get_blueprint() const { return blueprint; }
@@ -45,12 +43,11 @@ Point Obstacle::get_direction() const { return direction; }
 
 Point Obstacle::get_move() const {
     speed--;
-    if (has_moved || speed) {
-        return Point(0, 0);
-    } else {
+    if (speed == 0){
         speed = max_speed;
-        has_moved = true;
         return direction;
+    } else {
+        return Point(0, 0);
     }
 }
 
@@ -62,8 +59,6 @@ Point Obstacle::get_rand_dir() const {
 
     return (Point(value1, value2));
 }
-
-int Obstacle::get_reward() const { return reward; }
 
 EntityType Obstacle::get_type() const { return type; }
 
@@ -110,8 +105,8 @@ IGameEntity *Obstacle::get_collided(Road *e) {
 /* PRIVATE */
 
 void Obstacle::init() {
-    has_moved = false;
-    shoot = Point(0, 0);
+    max_speed = 20;
+    speed = max_speed;
 }
 
 // static

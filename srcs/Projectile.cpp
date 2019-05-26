@@ -25,12 +25,6 @@ Projectile &Projectile::operator=(Projectile const &a) {
     direction = a.direction;
     return *this;
 }
-
-// methods
-
-void Projectile::add_score(int value) { (*score) = (*score) + value; }
-void Projectile::end_turn() {}
-
 // getters
 
 BluePrint const &Projectile::get_blueprint() const { return blueprint; }

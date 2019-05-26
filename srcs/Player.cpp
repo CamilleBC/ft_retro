@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 19:01:16 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 14:10:08 by chaydont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ Player &Player::operator=(Player const &a) {
     return *this;
 }
 
-// methods
-
-void Player::end_turn() { has_moved = false; }
-
 // getters
 
 BluePrint const &Player::get_blueprint() const { return blueprint; }
@@ -41,14 +37,9 @@ Point Player::get_direction() const { return direction; }
 bool Player::get_is_shooting() const { return is_shooting; }
 
 Point Player::get_move() const {
-    if (has_moved) {
-        return Point(0, 0);
-    } else {
-        Point tmp(direction);
-        direction = Point(0, 0);
-        has_moved = true;
-        return tmp;
-    }
+    Point tmp = direction;
+    // direction = Point(0, 0);
+    return tmp;
 }
 
 Point Player::get_shot() const { return shot; }
@@ -98,7 +89,6 @@ IGameEntity *Player::get_collided(Road *e) {
 
 void Player::init() {
     is_shooting = false;
-    has_moved = false;
     shot = Point(0, -1);
 }
 

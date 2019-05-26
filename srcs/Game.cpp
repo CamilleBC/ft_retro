@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
 /*   Updated: 2019/05/26 19:03:48 by cbaillat         ###   ########.fr       */
@@ -170,8 +170,6 @@ void Game::init_grid() {
         grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
     }
     spawn_player();
-    grid[20][35] = new Enemy(Point(1, 1));
-    grid[50][50] = new Enemy(Point(0, -1));
 }
 
 void Game::delete_grid() {
@@ -184,37 +182,35 @@ void Game::delete_grid() {
     }
 }
 
-void Game::play_frame() {
-    static size_t frames = 0;
-    random_gen->spawn(grid, frames);
-    for (int h = (int)(GRID_HEIGHT - 1); h >= 0; --h) {
-        for (size_t w = 0; w < GRID_WIDTH; ++w) {
-            if (grid[h][w]) {
-                move_entity(Point(w, h));
-            }
-        }
-    }
-    for (size_t h = 0; h < GRID_HEIGHT; ++h) {
-        for (size_t w = 0; w < GRID_WIDTH; ++w) {
-            if (grid[h][w]) {
-                (grid[h][w])->end_turn();
-            }
-        }
-    }
-    frames++;
-}
-
 void Game::spawn_player() {
     player = new Player(Point(0, 0), &lives);
     grid[70][40] = player;
 }
 
-void Game::move_entity(Point position) {
+void Game::play_frame() {
+    IGameEntity ***new_grid = create_grid();
+
+    static size_t frames = 0;
+    random_gen->spawn(grid, frames);
+    for (size_t h = 0; h < GRID_HEIGHT; ++h) {
+        for (size_t w = 0; w < GRID_WIDTH; ++w) {
+            if (grid[h][w]) {
+                move_entity(new_grid, Point(w, h));
+            }
+        }
+    }
+    frames++;
+
+void Game::spawn_player() {
+    player = new Player(Point(0,0), &lives);
+    grid[70][40] = player;
+}
+
+void Game::move_entity(IGameEntity ***new_grid, Point position) {
     IGameEntity *entity;
     IGameEntity **dest;
 
     entity = grid[position.y][position.x];
-    grid[position.y][position.x] = NULL;
     Point move = entity->get_move();
     if ((size_t)(position.y + move.y) >= GRID_HEIGHT ||
         position.y + move.y < 0) {
@@ -233,12 +229,13 @@ void Game::move_entity(Point position) {
         Point shot = dynamic_cast<ICanShoot *>(entity)->get_shot();
         int *projectile_score =
             (entity->get_type() == ::player) ? &score : NULL;
-        grid[position.y + shot.y][position.x + shot.x] =
-            new Projectile(shot, projectile_score);
-        grid[position.y][position.x] = entity;
+        if (!new_grid[position.y + shot.y][position.x + shot.x])
+            new_grid[position.y + shot.y][position.x + shot.x] =
+                new Projectile(shot, projectile_score);
+        new_grid[position.y][position.x] = entity;
         dynamic_cast<ICanShoot *>(entity)->set_is_shooting(false);
     } else {
-        dest = &(grid[position.y + move.y][position.x + move.x]);
+        dest = &(new_grid[position.y + move.y][position.x + move.x]);
         *dest = (*dest == NULL ? entity : entity->collide(*dest));
     }
 }

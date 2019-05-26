@@ -1,10 +1,10 @@
 #include "Road.hpp"
 
-Road::Road() : direction(1, 0) { has_moved = false; }
+Road::Road() : direction(1, 0), max_speed(20), speed(20) { }
 
 Road::~Road() {}
 
-Road::Road(Point c_direction) : direction(c_direction) {
+Road::Road(Point c_direction, int speed) : direction(c_direction), max_speed(speed), speed(speed) {
     direction = c_direction;
 }
 
@@ -17,10 +17,6 @@ Road &Road::operator=(Road const &a) {
 
 // methods
 
-void Road::end_turn() {
-    has_moved = false;
-}
-
 // getters
 
 BluePrint const &Road::get_blueprint() const { return blueprint; }
@@ -28,11 +24,12 @@ BluePrint const &Road::get_blueprint() const { return blueprint; }
 Point Road::get_direction() const { return direction; }
 
 Point Road::get_move() const {
-    if (has_moved) {
-        return Point(0, 0);
-    } else {
-        has_moved = true;
+    speed--;
+    if (speed == 0){
+        speed = max_speed;
         return direction;
+    } else {
+        return Point(0, 0);
     }
 }
 
@@ -44,9 +41,7 @@ void Road::set_direction(Point dir) { direction = dir; }
 
 // collision
 
-IGameEntity *Road::collide(IGameEntity *e) {
-    return e->get_collided(this);
-}
+IGameEntity *Road::collide(IGameEntity *e) { return e->get_collided(this); }
 
 IGameEntity *Road::get_collided(Obstacle *e) {
     delete e;

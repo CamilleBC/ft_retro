@@ -25,7 +25,6 @@ class Player : public IGameEntity, public ICanShoot {
     static const BluePrint blueprint;
     static const EntityType type;
     mutable Point direction;
-    mutable bool has_moved;
     bool is_shooting;
     unsigned int *lives;
     Point shot;
@@ -38,7 +37,6 @@ class Player : public IGameEntity, public ICanShoot {
     Player(Player const &);
     Player &operator=(Player const &);
 
-    void end_turn();
     // getters
     bool get_is_shooting() const;
     BluePrint const &get_blueprint() const;

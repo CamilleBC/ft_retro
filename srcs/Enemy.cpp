@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
 /*   Updated: 2019/05/26 18:57:33 by cbaillat         ###   ########.fr       */
@@ -12,11 +12,11 @@
 
 #include "Enemy.hpp"
 
-Enemy::Enemy() : direction(0, 0) { init(); }
+Enemy::Enemy() : direction(1, 0) { init(); }
 
 Enemy::~Enemy() {}
 
-Enemy::Enemy(Point c_direction) : direction(c_direction) { init(); }
+Enemy::Enemy(Point c_direction, int speed) : direction(c_direction), max_speed(speed), speed(speed) { init(); }
 
 Enemy::Enemy(Enemy const &a) { *this = a; }
 
@@ -27,8 +27,6 @@ Enemy &Enemy::operator=(Enemy const &a) {
 
 // methods
 
-void Enemy::end_turn() { has_moved = false; }
-
 // getters
 
 BluePrint const &Enemy::get_blueprint() const { return blueprint; }
@@ -36,11 +34,12 @@ BluePrint const &Enemy::get_blueprint() const { return blueprint; }
 Point Enemy::get_direction() const { return direction; }
 
 Point Enemy::get_move() const {
-    if (has_moved) {
-        return Point(0, 0);
-    } else {
-        has_moved = true;
+    speed--;
+    if (speed == 0){
+        speed = max_speed;
         return direction;
+    } else {
+        return Point(0, 0);
     }
 }
 
@@ -86,7 +85,10 @@ IGameEntity *Enemy::get_collided(Road *e) {
 
 /* PRIVATE */
 
-void Enemy::init() { has_moved = false; }
+void Enemy::init() {
+    max_speed = 10;
+    speed = max_speed;
+}
 
 // static
 
