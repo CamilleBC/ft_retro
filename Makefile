@@ -5,7 +5,7 @@
 EXEC	=	ft_retro
 
 CXX			=	clang++
-CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g # -fsanitize=address
+CXXFLAGS	=	-std=c++98 -Wall -Wextra -Werror
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
