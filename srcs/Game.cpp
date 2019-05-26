@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:19:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 21:10:56 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:30:12 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Game::Game()
       lives(3), score(0) {
     init();
     random_gen = new RandomGenerator();
-    init_grid();
+    grid = create_grid();
     spawn_player();
 }
 
@@ -158,14 +158,6 @@ IGameEntity ***Game::create_grid() {
     return array2D;
 }
 
-void Game::init_grid() {
-    grid = create_grid();
-    for (size_t i = 0; i < 4; ++i) {
-        grid[rand_int(GRID_HEIGHT / 4)][rand_int(GRID_WIDTH)] = new Obstacle();
-    }
-    spawn_player();
-}
-
 void Game::delete_grid() {
     for (size_t h = 0; h < GRID_HEIGHT; ++h) {
         for (size_t w = 0; w < GRID_WIDTH; ++w) {
@@ -178,7 +170,14 @@ void Game::delete_grid() {
 
 void Game::spawn_player() {
     player = new Player(Point(0, 0), &lives);
-    grid[70][40] = player;
+    for (size_t h = 70; h > 0; --h) {
+        for (size_t w = 40; w < GRID_WIDTH; ++w) {
+            if (!grid[h][w]) {
+                grid[h][w] = player;
+                return;
+            }
+        }
+    }
 }
 
 void Game::play_frame() {

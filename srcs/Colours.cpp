@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:40:04 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/21 10:46:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:15:51 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ Colours::Colours() {}
 
 Colours::~Colours() {}
 
-Enemy::Enemy(Enemy const &a) { *this = a; }
+Colours::Colours(Colours const &other) { *this = other; }
 
-Enemy &Enemy::operator=(Enemy const &a){
+Colours &Colours::operator=(Colours const &rhs) {
+    (void)rhs;
     return *this;
 }
 

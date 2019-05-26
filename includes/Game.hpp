@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 00:18:03 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 21:10:38 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:30:12 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "Colours.hpp"
 #include "Enemy.hpp"
 #include "IGameEntity.hpp"
-#include "KeyPress.hpp"
 #include "MainScreen.hpp"
 #include "Obstacle.hpp"
 #include "Player.hpp"
@@ -45,7 +44,6 @@ class Game {
     // methods
     void delete_grid();
     void init();
-    void init_grid();
     void init_mainscreen();
     void play_frame();
     void move_entity(IGameEntity*** new_grid, Point position);

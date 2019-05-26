@@ -12,7 +12,6 @@ SRCFILES	=	main.cpp\
 				Colours.cpp\
 				Enemy.cpp\
 				Game.cpp\
-				KeyPress.cpp\
 				MainScreen.cpp\
 				MsTimer.cpp\
 				Obstacle.cpp\

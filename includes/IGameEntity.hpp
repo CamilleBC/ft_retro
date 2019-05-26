@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IGameEntity.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 18:25:05 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:14:53 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,5 @@ class IGameEntity {
     virtual IGameEntity *get_collided(Player *) = 0;
     virtual IGameEntity *get_collided(Road *) = 0;
 };
-
-#include "Enemy.hpp"
-#include "Obstacle.hpp"
-#include "Player.hpp"
-#include "Projectile.hpp"
-#include "Road.hpp"
-
 
 #endif /* IGAMEENTITY_HPP */
