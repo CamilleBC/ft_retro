@@ -1,12 +1,13 @@
 #ifndef ROAD_HPP
 #define ROAD_HPP
 
-#include "Enemy.hpp"
+#include "BluePrint.hpp"
 #include "IGameEntity.hpp"
-#include "Obstacle.hpp"
-#include "Player.hpp"
 #include "Point.hpp"
+#include "Obstacle.hpp"
 #include "Projectile.hpp"
+#include "Enemy.hpp"
+#include "Player.hpp"
 #include <iostream>
 
 class Road : public IGameEntity {

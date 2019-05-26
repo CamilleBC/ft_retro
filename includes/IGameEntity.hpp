@@ -29,7 +29,7 @@ enum EntityType
 	obstacle,
 	player,
 	projectile,
-  road
+    road
 };
 
 class IGameEntity {
@@ -57,5 +57,7 @@ class IGameEntity {
 #include "Obstacle.hpp"
 #include "Player.hpp"
 #include "Projectile.hpp"
+#include "Road.hpp"
+
 
 #endif /* IGAMEENTITY_HPP */

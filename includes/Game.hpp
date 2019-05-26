@@ -20,6 +20,7 @@
 #include "MainScreen.hpp"
 #include "Obstacle.hpp"
 #include "Player.hpp"
+#include "Road.hpp"
 #include "RandomGenerator.hpp"
 #include "StatusScreen.hpp"
 

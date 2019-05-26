@@ -19,6 +19,7 @@
 #include "Obstacle.hpp"
 #include "Projectile.hpp"
 #include "Road.hpp"
+#include "Point.hpp"
 
 class Player : public IGameEntity, public ICanShoot {
   private:

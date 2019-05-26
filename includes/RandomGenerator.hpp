@@ -1,13 +1,14 @@
 #ifndef RANDOMGENERATOR_HPP
 #define RANDOMGENERATOR_HPP
 
+#include "IGameEntity.hpp"
 #include "Constants.hpp"
 #include "Road.hpp"
 #include "Enemy.hpp"
 #include "Obstacle.hpp"
 #include "Projectile.hpp"
 #include "Player.hpp"
-#include "IGameEntity.hpp"
+#include "Point.hpp"
 
 class RandomGenerator {
   private:
