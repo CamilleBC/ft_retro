@@ -18,4 +18,4 @@
 #define STATUSSCREEN_HEIGHT (size_t)82
 #define STATUSSCREEN_WIDTH (size_t)82
 
-#define FPS 30
+#define FPS 60

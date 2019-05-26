@@ -22,6 +22,14 @@ class Projectile;
 class Enemy;
 class Player;
 
+enum EntityType
+{
+	enemy,
+	obstacle,
+	player,
+	projectile
+};
+
 class IGameEntity {
   public:
     virtual ~IGameEntity() {}
@@ -32,6 +40,7 @@ class IGameEntity {
     virtual BluePrint const &get_blueprint() const = 0;
     virtual Point get_direction() const = 0;
     virtual Point get_move() const = 0;
+    virtual EntityType get_type() const = 0;
     // setter
     virtual void set_direction(Point) = 0;
     // collision

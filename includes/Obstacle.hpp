@@ -21,6 +21,7 @@
 class Obstacle : public IGameEntity {
   private:
     static const BluePrint blueprint;
+    static const EntityType type;
     Point direction;
     mutable bool has_moved;
     int max_speed;
@@ -42,6 +43,7 @@ class Obstacle : public IGameEntity {
     virtual Point get_direction() const;
     Point get_move() const;
     Point get_rand_dir() const;
+    EntityType get_type() const;
     //setters
     void set_direction(Point dir);
     // collision

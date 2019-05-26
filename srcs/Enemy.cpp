@@ -44,6 +44,8 @@ Point Enemy::get_move() const {
     }
 }
 
+EntityType Enemy::get_type() const { return type; }
+
 // setters
 
 void Enemy::set_direction(Point dir) { direction = dir; }
@@ -81,3 +83,5 @@ void Enemy::init() { has_moved = false; }
 // static
 
 BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1);
+EntityType const Enemy::type = enemy;
+

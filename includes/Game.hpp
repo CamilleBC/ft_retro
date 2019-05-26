@@ -14,6 +14,7 @@
 #define GAME_HPP
 
 #include "Enemy.hpp"
+#include "RandomGenerator.hpp"
 #include "IGameEntity.hpp"
 #include "KeyPress.hpp"
 #include "MainScreen.hpp"
@@ -29,6 +30,7 @@ class Game {
     MainScreen main_screen;
     StatusScreen status_screen;
     Player *player;
+    RandomGenerator *random_gen;
     MsTimer timer;
     // IGameEntity ***grid;
     IGameEntity *grid[GRID_HEIGHT][GRID_WIDTH];

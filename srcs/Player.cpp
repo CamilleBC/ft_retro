@@ -50,6 +50,8 @@ Point Player::get_move() const {
 
 Point Player::get_shot() const { return shot; }
 
+EntityType Player::get_type() const { return type; }
+
 // setters
 
 void Player::set_direction(Point input) { direction = input; }
@@ -92,3 +94,4 @@ void Player::init() {
 // static
 
 BluePrint const Player::blueprint = BluePrint(new std::string(")^("), 1);
+EntityType const Player::type = player;

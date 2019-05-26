@@ -5,7 +5,7 @@
 EXEC	=	ft_retro
 
 CXX			=	clang++
-CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g #-fsanitize=address
+CXXFLAGS	=	-std=c++98 -pedantic -Wall -Wextra -Werror -g -Og -fsanitize=address
 
 SRCDIR		=	srcs
 SRCFILES	=	main.cpp\
@@ -17,7 +17,8 @@ SRCFILES	=	main.cpp\
 				StatusScreen.cpp\
 				Obstacle.cpp\
 				Projectile.cpp\
-				Player.cpp
+				Player.cpp\
+				RandomGenerator.cpp
 
 OBJDIR		=	objs
 OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)

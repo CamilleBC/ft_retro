@@ -63,6 +63,7 @@ Point Obstacle::get_rand_dir() const {
     return (Point(value1, value2));
 }
 
+EntityType Obstacle::get_type() const { return type; }
 // setters
 
 void Obstacle::set_direction(Point dir) { direction = dir; }
@@ -105,3 +106,4 @@ void Obstacle::init() {
 // static
 
 BluePrint const Obstacle::blueprint = BluePrint(new std::string("(@)"), 1);
+EntityType const Obstacle::type = obstacle;
