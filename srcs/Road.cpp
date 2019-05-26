@@ -71,5 +71,6 @@ IGameEntity *Road::get_collided(Player *e) {
 /* PRIVATE */
 
 // static
-BluePrint const Road::blueprint = BluePrint(new std::string("###"), 1);
+BluePrint const Road::blueprint = BluePrint(new std::string("###"), 1, colour);
 EntityType const Road::type = road;
+int const Road::colour = ROAD_PAIR;

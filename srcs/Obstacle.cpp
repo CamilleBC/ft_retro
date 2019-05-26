@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 19:30:00 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:54:33 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void Obstacle::init() {
 
 // static
 
-BluePrint const Obstacle::blueprint = BluePrint(new std::string("(@)"), 1);
+BluePrint const Obstacle::blueprint = BluePrint(new std::string("(@)"), 1, colour);
 EntityType const Obstacle::type = obstacle;
 int const Obstacle::reward = 20;
+int const Obstacle::colour = OBSTACLE_PAIR;

@@ -2,16 +2,18 @@
 #define ROAD_HPP
 
 #include "BluePrint.hpp"
-#include "IGameEntity.hpp"
-#include "Point.hpp"
-#include "Obstacle.hpp"
-#include "Projectile.hpp"
+#include "Constants.hpp"
 #include "Enemy.hpp"
+#include "IGameEntity.hpp"
+#include "Obstacle.hpp"
 #include "Player.hpp"
+#include "Point.hpp"
+#include "Projectile.hpp"
 #include <iostream>
 
 class Road : public IGameEntity {
   private:
+    static const int colour;
     static const BluePrint blueprint;
     static const EntityType type;
     Point direction;
@@ -24,7 +26,7 @@ class Road : public IGameEntity {
     ~Road();
     Road(Road const &);
     Road &operator=(Road const &);
-  
+
     // getters
     BluePrint const &get_blueprint() const;
     virtual Point get_direction() const;

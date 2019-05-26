@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 14:10:08 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:54:39 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void Player::init() {
 
 // static
 
-BluePrint const Player::blueprint = BluePrint(new std::string(")^("), 1);
+BluePrint const Player::blueprint = BluePrint(new std::string(")^("), 1, colour);
 EntityType const Player::type = player;
+int const Player::colour = PLAYER_PAIR;

@@ -6,13 +6,14 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:04:49 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 19:00:56 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:48:45 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include "Constants.hpp"
 #include "ICanShoot.hpp"
 #include "IGameEntity.hpp"
 #include "Enemy.hpp"
@@ -23,6 +24,7 @@
 
 class Player : public IGameEntity, public ICanShoot {
   private:
+    static const int colour;
     static const BluePrint blueprint;
     static const EntityType type;
     mutable Point direction;

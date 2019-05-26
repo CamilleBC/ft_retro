@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Obstacle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:17:24 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 18:43:49 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:48:01 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBSTACLE_HPP
 #define OBSTACLE_HPP
 
+#include "Constants.hpp"
 #include "Enemy.hpp"
 #include "IGameEntity.hpp"
 #include "Player.hpp"
@@ -23,6 +24,7 @@
 
 class Obstacle : public IGameEntity {
   private:
+    static const int colour;
     static const BluePrint blueprint;
     static const EntityType type;
     static const int reward;

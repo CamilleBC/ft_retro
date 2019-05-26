@@ -6,13 +6,14 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:44:43 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 18:59:53 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:52:07 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROJECTILE_HPP
 #define PROJECTILE_HPP
 
+#include "Constants.hpp"
 #include "Enemy.hpp"
 #include "IGameEntity.hpp"
 #include "Obstacle.hpp"
@@ -23,6 +24,7 @@
 
 class Projectile : public IGameEntity {
   private:
+    static const int colour;
     static const BluePrint blueprint;
     static const EntityType type;
     Point direction;

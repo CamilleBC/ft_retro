@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 21:24:29 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:54:21 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void Enemy::init() {
 
 // static
 
-BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1);
+BluePrint const Enemy::blueprint = BluePrint(new std::string("|o|"), 1, colour);
 EntityType const Enemy::type = enemy;
 int const Enemy::reward = 100;
+int const Enemy::colour = ENEMY_PAIR;

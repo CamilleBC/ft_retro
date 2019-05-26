@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 11:45:26 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 19:29:40 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:54:49 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ IGameEntity *Projectile::get_collided(Road *e) {
 /* PRIVATE */
 
 // static
-BluePrint const Projectile::blueprint = BluePrint(new std::string(" ' "), 1);
+BluePrint const Projectile::blueprint = BluePrint(new std::string(" ' "), 1, colour);
 EntityType const Projectile::type = projectile;
+int const Projectile::colour = PROJECTILE_PAIR;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaydont <chaydont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:58:32 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 20:19:56 by chaydont         ###   ########.fr       */
+/*   Updated: 2019/05/26 21:51:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ENEMY_HPP
 
 #include "IGameEntity.hpp"
+#include "Constants.hpp"
 #include "Obstacle.hpp"
 #include "Player.hpp"
 #include "Point.hpp"
@@ -24,6 +25,7 @@
 
 class Enemy : public IGameEntity, public ICanShoot {
   private:
+    static const int colour;
     static const BluePrint blueprint;
     static const EntityType type;
     static const int reward;
