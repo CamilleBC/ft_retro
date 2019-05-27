@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 16:05:38 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 21:54:39 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:41:40 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ Point Player::get_move() const {
     if (speed == 0) {
         speed = max_speed;
         Point tmp = direction;
-//        direction = Point(0, 0);
         return tmp;
     }
     return Point(0, 0);

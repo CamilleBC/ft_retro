@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 22:52:17 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 21:14:53 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:44:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ class IGameEntity {
   public:
     virtual ~IGameEntity() {}
 
-    // methods
     // getters
     virtual BluePrint const &get_blueprint() const = 0;
     virtual Point get_direction() const = 0;

@@ -28,8 +28,8 @@ OBJFILES	=	$(SRCFILES:%.cpp=$(OBJDIR)/%.o)
 IDIR	=	includes
 IFLAGS	=	$(addprefix -I,$(IDIR))
 
-LDDIR = $(HOME)/.brew/Cellar/ncurses/6.1/lib
-LDFGLAGS	= -L$(LDDIR) -lncursesw
+LDDIR =
+LDFGLAGS	= -lncurses
 
 DEPDIR		=	deps
 DEPFILES	=	$(SRCFILES: %.c=$(DEPDIR)/%.d)

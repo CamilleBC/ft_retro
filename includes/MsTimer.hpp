@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 17:22:56 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 20:56:45 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:44:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ class MsTimer {
   private:
     timespec delta_start;
     unsigned long start_msec;
-    // unsigned long pause_msec;
-    // unsigned long total_pause_msec;
     unsigned long last_pause_msec;
     unsigned long total_msec;
     bool is_paused;

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:58:32 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 21:51:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:44:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ class Enemy : public IGameEntity, public ICanShoot {
     Enemy(Enemy const &);
     Enemy &operator=(Enemy const &);
 
-    // methods
     // getters
     Point get_direction() const;
     BluePrint const &get_blueprint() const;

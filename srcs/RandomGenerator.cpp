@@ -15,7 +15,6 @@ int RandomGenerator::get_rand_int(int n) { return ((int)((rand() / (double)RAND_
 
 Point RandomGenerator::get_rand_dir(){
 	int sign1 = (get_rand_int(2)) * 2 - 1;
-	//   int sign2 = ((int)((rand() / (double)RAND_MAX) * 2)) * 2 - 1;
 	int value1 = sign1 * get_rand_int(3);
 	int value2 = get_rand_int(2) + 1;
 
@@ -103,7 +102,7 @@ void RandomGenerator::spawn_square(EntityType type, IGameEntity ***grid)
     }
 }
 void RandomGenerator::spawn_road(IGameEntity ***grid, size_t frames)
-{ 	
+{
 	if (!(frames % 5))
 		for (size_t i = 0; i < GRID_WIDTH; ++i) {
 			if (!grid[0][i])

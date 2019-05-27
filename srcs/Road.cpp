@@ -15,8 +15,6 @@ Road &Road::operator=(Road const &a) {
     return *this;
 }
 
-// methods
-
 // getters
 
 BluePrint const &Road::get_blueprint() const { return blueprint; }

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 09:59:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 21:54:21 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:44:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ Enemy &Enemy::operator=(Enemy const &a) {
     direction = a.direction;
     return *this;
 }
-
-// methods
 
 // getters
 

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 17:18:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2019/05/26 21:01:51 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:44:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ MsTimer::MsTimer() {
     gettimeofday(&start, NULL);
     clock_gettime(CLOCK_REALTIME, &delta_start);
     start_msec = start.tv_sec * 1000 + start.tv_usec / 1000;
-    // pause_msec = 0;
     last_pause_msec = start_msec;
     total_msec = 0;
     is_paused = false;
@@ -31,7 +30,6 @@ MsTimer &MsTimer::operator=(MsTimer const &rhs) {
     start_msec = rhs.start_msec;
     delta_start = rhs.delta_start;
     start_msec = 0;
-    // pause_msec = 0;
     last_pause_msec = 0;
     total_msec = 0;
     return *this;
@@ -56,8 +54,6 @@ void MsTimer::end_pause() {
     timeval current;
     gettimeofday(&current, NULL);
     last_pause_msec = current.tv_sec * 1000 + current.tv_usec / 1000;
-    // total_pause_msec = end_pause_msec - pause_msec;
-    // pause_msec = 0;
     is_paused = false;
 }
 
@@ -67,7 +63,6 @@ void MsTimer::start_pause() {
     gettimeofday(&current, NULL);
     unsigned long current_msec = current.tv_sec * 1000 + current.tv_usec / 1000;
     total_msec = (current_msec - last_pause_msec) + total_msec;
-    // pause_msec = current.tv_sec * 1000 + current.tv_usec / 1000;
 }
 
 unsigned long MsTimer::get_current_msec() const {
@@ -78,7 +73,6 @@ unsigned long MsTimer::get_current_msec() const {
     gettimeofday(&current, NULL);
     unsigned long current_msec = current.tv_sec * 1000 + current.tv_usec / 1000;
     return (current_msec - last_pause_msec) + total_msec;
-    // return current_msec - start_msec - total_pause_msec;
 }
 
 std::string MsTimer::get_current_string() const {

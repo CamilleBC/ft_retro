@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:21:28 by chaydont          #+#    #+#             */
-/*   Updated: 2019/05/26 21:54:33 by cbaillat         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:44:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ Obstacle &Obstacle::operator=(Obstacle const &rhs) {
     direction = rhs.direction;
     return *this;
 }
-
-// methods
 
 // getters
 
